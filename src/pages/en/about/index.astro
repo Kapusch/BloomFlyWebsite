@@ -1,0 +1,70 @@
+---
+import StoreBadges from "../../../components/StoreBadges.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { pageMeta } from "../../../data/site";
+
+const locale = "en";
+const meta = pageMeta[locale].about;
+---
+
+<BaseLayout locale={locale} title={meta.title} description={meta.description} path={meta.path} alternatePath={meta.alternate}>
+  <section class="section about-hero">
+    <div class="container about-layout">
+      <div>
+        <p class="eyebrow">About</p>
+        <h1>An app born from a need for calm</h1>
+        <p class="lead">Bloom & Fly grew from Pauline and Jean-Emmanuel’s path, partners in life and in this project. The idea: make wellbeing practices more accessible, more beautiful, and easier to use when everyday life feels full.</p>
+      </div>
+      <img src="/assets/brand/logo-pastille.png" alt="" width="512" height="512" loading="eager" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="narrow">
+      <h2>Making guided practices easier to live with</h2>
+      <p>Bloom & Fly brings guided breathing, mantras, mudras, express rituals, inner journeys, and sound ambiences into a soft and structured mobile experience.</p>
+      <p>The app is for people who want to care for themselves without turning wellbeing into another pressure. A few minutes can be enough to find a point of support.</p>
+    </div>
+  </section>
+
+  <section class="section section--soft final-cta">
+    <div class="narrow">
+      <h2>Discover Bloom & Fly for free</h2>
+      <p class="lead">Explore the first practices and start the 7-day premium trial if you want to go further.</p>
+      <StoreBadges locale={locale} compact />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    background: linear-gradient(120deg, rgba(223, 242, 251, 0.85), rgba(255, 241, 235, 0.8));
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 20rem);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .about-layout img {
+    justify-self: center;
+    width: min(18rem, 70vw);
+    height: auto;
+  }
+
+  .final-cta {
+    text-align: center;
+  }
+
+  .final-cta .lead {
+    margin-inline: auto;
+  }
+
+  @media (max-width: 760px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

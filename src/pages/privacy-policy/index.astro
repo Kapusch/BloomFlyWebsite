@@ -1,0 +1,12 @@
+---
+import LegalContent from "../../components/LegalContent.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { legalPages } from "../../data/legal";
+import { routes } from "../../data/site";
+---
+
+<BaseLayout locale="fr" title="Politique de confidentialité - Bloom & Fly" description="Politique de confidentialité de Bloom & Fly et informations sur le traitement des données personnelles." path={routes.fr.privacyPolicy} alternatePath={routes.en.privacyPolicy}>
+  <section class="section">
+    <LegalContent html={legalPages.fr.privacyPolicy} />
+  </section>
+</BaseLayout>

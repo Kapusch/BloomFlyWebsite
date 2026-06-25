@@ -1,0 +1,115 @@
+---
+import StoreBadges from "./StoreBadges.astro";
+import { homeContent, labels, routes, type Locale } from "../data/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = homeContent[locale];
+const t = labels[locale];
+const r = routes[locale];
+const heroScreen = locale === "fr" ? "/assets/screens/fr-home.png" : "/assets/screens/en-home.png";
+---
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">{content.eyebrow}</p>
+      <h1>{content.title}</h1>
+      <p class="hero-subtitle">{content.subtitle}</p>
+      <p class="lead">{content.body}</p>
+      <div class="hero-actions">
+        <StoreBadges locale={locale} />
+        <a class="button button--ghost" href={r.discover}>{t.cta.secondary}</a>
+      </div>
+    </div>
+
+    <div class="phone-stage" aria-label={locale === "fr" ? "Capture de l’application Bloom & Fly" : "Bloom & Fly app screenshot"}>
+      <img src={heroScreen} alt="" width="414" height="900" fetchpriority="high" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 4.8rem);
+    padding: clamp(4.5rem, 8vw, 7rem) 1.25rem clamp(4rem, 8vw, 6rem);
+    overflow: hidden;
+    background: #dff2fb;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(255, 250, 248, 0.88) 0%, rgba(255, 250, 248, 0.68) 40%, rgba(223, 242, 251, 0.42) 100%),
+      url("/assets/illustrations/journey-confidence.png") center / cover no-repeat;
+  }
+
+  .hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(18rem, 0.64fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    width: min(1120px, 100%);
+    margin: 0 auto;
+  }
+
+  .hero-copy {
+    padding-block: 2rem;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 1.2rem;
+    color: var(--dream-deep);
+    font-size: clamp(1.45rem, 3vw, 2.45rem);
+    font-weight: 850;
+    line-height: 1.12;
+  }
+
+  .hero-actions {
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 1.8rem;
+  }
+
+  .hero-actions > .button {
+    width: fit-content;
+  }
+
+  .phone-stage {
+    justify-self: center;
+    width: min(23rem, 80vw);
+    transform: rotate(2deg);
+    filter: drop-shadow(0 30px 60px rgba(32, 36, 87, 0.22));
+  }
+
+  .phone-stage img {
+    width: 100%;
+    height: auto;
+    border: 10px solid rgba(255, 255, 255, 0.92);
+    border-radius: 2.2rem;
+    background: white;
+  }
+
+  @media (max-width: 880px) {
+    .hero {
+      min-height: auto;
+      padding-top: 3rem;
+    }
+
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .phone-stage {
+      width: min(19rem, 74vw);
+      transform: rotate(0);
+    }
+  }
+</style>

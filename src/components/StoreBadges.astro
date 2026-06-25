@@ -1,0 +1,86 @@
+---
+import { labels, site, type Locale } from "../data/site";
+
+interface Props {
+  locale: Locale;
+  compact?: boolean;
+}
+
+const { locale, compact = false } = Astro.props;
+const t = labels[locale].cta;
+const appStoreBadge = locale === "fr" ? "/assets/store/app-store-fr.svg" : "/assets/store/app-store-en.svg";
+const googleBadge = locale === "fr" ? "/assets/store/google-play-fr.png" : "/assets/store/google-play-en.png";
+const appStoreAlt = locale === "fr" ? "Télécharger dans l’App Store" : "Download on the App Store";
+const googleAlt = locale === "fr" ? "Disponible sur Google Play" : "Get it on Google Play";
+---
+
+<div class:list={["store-cta", compact && "store-cta--compact"]}>
+  <a class="button smart-link" href={site.smartDownload[locale]}>{t.primary}</a>
+  <div class="store-badges" aria-label={t.stores}>
+    <a href={site.appStoreUrl} aria-label={appStoreAlt}>
+      <img src={appStoreBadge} alt={appStoreAlt} width="259" height="82" loading="lazy" />
+    </a>
+    <a href={site.playStoreUrl} aria-label={googleAlt}>
+      <img src={googleBadge} alt={googleAlt} width="478" height="142" loading="lazy" />
+    </a>
+  </div>
+</div>
+
+<style>
+  .store-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem 1rem;
+  }
+
+  .smart-link {
+    display: none;
+  }
+
+  .store-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .store-badges a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.25rem;
+    text-decoration: none;
+  }
+
+  .store-badges img {
+    width: auto;
+    max-width: 10rem;
+    height: 3.05rem;
+    object-fit: contain;
+  }
+
+  .store-cta--compact {
+    justify-content: center;
+  }
+
+  @media (max-width: 560px) {
+    .store-cta,
+    .store-badges {
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .smart-link {
+      display: inline-flex;
+    }
+
+    .store-cta .button {
+      width: 100%;
+    }
+
+    .store-badges {
+      justify-content: center;
+    }
+  }
+</style>

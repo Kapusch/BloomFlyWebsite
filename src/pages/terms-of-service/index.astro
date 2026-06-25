@@ -1,0 +1,12 @@
+---
+import LegalContent from "../../components/LegalContent.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { legalPages } from "../../data/legal";
+import { routes } from "../../data/site";
+---
+
+<BaseLayout locale="fr" title="Conditions générales d’utilisation - Bloom & Fly" description="Conditions générales d’utilisation du site et de l’application Bloom & Fly." path={routes.fr.termsOfService} alternatePath={routes.en.termsOfService}>
+  <section class="section">
+    <LegalContent html={legalPages.fr.termsOfService} />
+  </section>
+</BaseLayout>

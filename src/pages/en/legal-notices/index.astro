@@ -1,0 +1,12 @@
+---
+import LegalContent from "../../../components/LegalContent.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { legalPages } from "../../../data/legal";
+import { routes } from "../../../data/site";
+---
+
+<BaseLayout locale="en" title="Legal Notices - Bloom & Fly" description="Legal notices for Bloom & Fly and Bloomy Apps." path={routes.en.legalNotices} alternatePath={routes.fr.legalNotices}>
+  <section class="section">
+    <LegalContent html={legalPages.en.legalNotices} />
+  </section>
+</BaseLayout>

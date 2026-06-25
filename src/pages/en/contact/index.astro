@@ -1,0 +1,90 @@
+---
+import StoreBadges from "../../../components/StoreBadges.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { pageMeta, site } from "../../../data/site";
+
+const locale = "en";
+const meta = pageMeta[locale].contact;
+---
+
+<BaseLayout locale={locale} title={meta.title} description={meta.description} path={meta.path} alternatePath={meta.alternate}>
+  <section class="section contact-hero">
+    <div class="container contact-layout">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1>Contact the Bloom & Fly team</h1>
+        <p class="lead">For support, partnerships, press, or general questions, write to us directly by email.</p>
+        <a class="button" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+      </div>
+      <img src="/assets/illustrations/ritual-energy.png" alt="" width="1200" height="800" loading="eager" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="grid grid--3 container">
+      <article class="card contact-card">
+        <h3>Support</h3>
+        <p>Having trouble with the app, your account, or your subscription? Include your device, platform, and what happened.</p>
+      </article>
+      <article class="card contact-card">
+        <h3>Press</h3>
+        <p>For a media request or Bloom & Fly presentation, send us your deadline and publication context.</p>
+      </article>
+      <article class="card contact-card">
+        <h3>Partnerships</h3>
+        <p>For wellbeing, content, or brand collaborations, share a few lines about your project.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--soft final-cta">
+    <div class="narrow">
+      <h2>Want to try the app?</h2>
+      <StoreBadges locale={locale} compact />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-hero {
+    background: linear-gradient(120deg, rgba(255, 241, 235, 0.95), rgba(223, 242, 251, 0.65));
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.78fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .contact-layout h1 {
+    max-width: 11ch;
+  }
+
+  .contact-layout .button {
+    margin-top: 1rem;
+  }
+
+  .contact-layout img {
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+
+  .contact-card {
+    padding: 1.35rem;
+  }
+
+  .contact-card p {
+    margin-bottom: 0;
+  }
+
+  .final-cta {
+    text-align: center;
+  }
+
+  @media (max-width: 820px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

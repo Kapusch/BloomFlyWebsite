@@ -1,0 +1,70 @@
+---
+import StoreBadges from "../../components/StoreBadges.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { pageMeta } from "../../data/site";
+
+const locale = "fr";
+const meta = pageMeta[locale].about;
+---
+
+<BaseLayout locale={locale} title={meta.title} description={meta.description} path={meta.path} alternatePath={meta.alternate}>
+  <section class="section about-hero">
+    <div class="container about-layout">
+      <div>
+        <p class="eyebrow">À propos</p>
+        <h1>Une application née d’un besoin de calme</h1>
+        <p class="lead">Bloom & Fly est né du parcours de Pauline et Jean-Emmanuel, partenaires dans la vie comme dans ce projet. L’idée : rendre les pratiques de bien-être plus accessibles, plus belles et plus faciles à utiliser quand le quotidien devient chargé.</p>
+      </div>
+      <img src="/assets/brand/logo-pastille.png" alt="" width="512" height="512" loading="eager" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="narrow">
+      <h2>Rendre les pratiques guidées plus simples à vivre</h2>
+      <p>Bloom & Fly réunit des respirations guidées, mantras, mudras, rituels express, voyages intérieurs et ambiances sonores dans une expérience mobile douce et structurée.</p>
+      <p>L’application s’adresse aux personnes qui veulent prendre soin d’elles sans transformer le bien-être en nouvelle injonction. Quelques minutes peuvent suffire pour retrouver un point d’appui.</p>
+    </div>
+  </section>
+
+  <section class="section section--soft final-cta">
+    <div class="narrow">
+      <h2>Découvre Bloom & Fly gratuitement</h2>
+      <p class="lead">Explore les premières pratiques et active l’essai premium de 7 jours si tu souhaites aller plus loin.</p>
+      <StoreBadges locale={locale} compact />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    background: linear-gradient(120deg, rgba(223, 242, 251, 0.85), rgba(255, 241, 235, 0.8));
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 20rem);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .about-layout img {
+    justify-self: center;
+    width: min(18rem, 70vw);
+    height: auto;
+  }
+
+  .final-cta {
+    text-align: center;
+  }
+
+  .final-cta .lead {
+    margin-inline: auto;
+  }
+
+  @media (max-width: 760px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+interface Props {
+  html: string;
+}
+
+const { html } = Astro.props;
+---
+
+<article class="legal-content" set:html={html} />
+
+<style is:global>
+  .legal-content {
+    width: min(860px, 100%);
+    margin: 0 auto;
+  }
+
+  .legal-content h2 {
+    margin-bottom: 2rem;
+  }
+
+  .legal-content p,
+  .legal-content li {
+    color: rgba(32, 36, 87, 0.78);
+  }
+
+  .legal-content a {
+    color: var(--dream);
+    font-weight: 750;
+  }
+
+  .legal-content ul {
+    padding-left: 1.2rem;
+  }
+
+  .legal-content strong {
+    color: var(--dream-deep);
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+import LegalContent from "../../../components/LegalContent.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { legalPages } from "../../../data/legal";
+import { routes } from "../../../data/site";
+---
+
+<BaseLayout locale="en" title="Terms of Sale - Bloom & Fly" description="Terms of sale applicable to Bloom & Fly subscriptions." path={routes.en.termsOfSale} alternatePath={routes.fr.termsOfSale}>
+  <section class="section">
+    <LegalContent html={legalPages.en.termsOfSale} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,12 @@
+---
+import LegalContent from "../../components/LegalContent.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { legalPages } from "../../data/legal";
+import { routes } from "../../data/site";
+---
+
+<BaseLayout locale="fr" title="Conditions générales de vente - Bloom & Fly" description="Conditions générales de vente applicables aux abonnements Bloom & Fly." path={routes.fr.termsOfSale} alternatePath={routes.en.termsOfSale}>
+  <section class="section">
+    <LegalContent html={legalPages.fr.termsOfSale} />
+  </section>
+</BaseLayout>

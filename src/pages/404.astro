@@ -1,0 +1,51 @@
+---
+import StoreBadges from "../components/StoreBadges.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout locale="fr" title="Page introuvable - Bloom & Fly" description="La page demandée est introuvable." path="/404.html" noindex>
+  <section class="section not-found">
+    <div class="narrow">
+      <img src="/assets/brand/logo-pastille.png" alt="" width="512" height="512" loading="eager" />
+      <p class="eyebrow">404</p>
+      <h1>Page introuvable</h1>
+      <p class="lead">La page que tu cherches n’existe pas ou a changé d’adresse. Tu peux revenir à l’accueil ou essayer l’application.</p>
+      <div class="actions">
+        <a class="button button--ghost" href="/">Retour à l’accueil</a>
+        <StoreBadges locale="fr" compact />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 70vh;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(120deg, rgba(223, 242, 251, 0.88), rgba(255, 241, 235, 0.86));
+  }
+
+  img {
+    width: min(12rem, 45vw);
+    height: auto;
+    margin: 0 auto 1rem;
+  }
+
+  h1 {
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .lead {
+    margin-inline: auto;
+  }
+
+  .actions {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+</style>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://bloomandflyapp.com/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bloomandflyapp.com/" />
+  </url>
+  <url>
+    <loc>https://bloomandflyapp.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bloomandflyapp.com/" />
+  </url>
+  <url>
+    <loc>https://bloomandflyapp.com/discover-bloom-and-fly/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/discover-bloom-and-fly/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/discover-bloom-and-fly/" />
+  </url>
+  <url>
+    <loc>https://bloomandflyapp.com/en/discover-bloom-and-fly/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/discover-bloom-and-fly/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/discover-bloom-and-fly/" />
+  </url>
+  <url>
+    <loc>https://bloomandflyapp.com/about/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/about/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/about/" />
+  </url>
+  <url>
+    <loc>https://bloomandflyapp.com/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/about/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/about/" />
+  </url>
+  <url>
+    <loc>https://bloomandflyapp.com/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/contact/" />
+  </url>
+  <url>
+    <loc>https://bloomandflyapp.com/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/contact/" />
+  </url>
+  <url><loc>https://bloomandflyapp.com/legal-notices/</loc></url>
+  <url><loc>https://bloomandflyapp.com/privacy-policy/</loc></url>
+  <url><loc>https://bloomandflyapp.com/terms-of-service/</loc></url>
+  <url><loc>https://bloomandflyapp.com/terms-of-sale/</loc></url>
+  <url><loc>https://bloomandflyapp.com/en/legal-notices/</loc></url>
+  <url><loc>https://bloomandflyapp.com/en/privacy-policy/</loc></url>
+  <url><loc>https://bloomandflyapp.com/en/terms-of-service/</loc></url>
+  <url><loc>https://bloomandflyapp.com/en/terms-of-sale/</loc></url>
+</urlset>

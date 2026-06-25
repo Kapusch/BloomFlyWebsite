@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "BloomFlyWebsite: dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "env": {
+          "ASTRO_TELEMETRY_DISABLED": "1"
+        }
+      },
+      "problemMatcher": [],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "BloomFlyWebsite: build",
+      "type": "shell",
+      "command": "npm run build",
+      "options": {
+        "env": {
+          "ASTRO_TELEMETRY_DISABLED": "1"
+        }
+      },
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "BloomFlyWebsite: preview",
+      "type": "shell",
+      "command": "npm run preview",
+      "options": {
+        "env": {
+          "ASTRO_TELEMETRY_DISABLED": "1"
+        }
+      },
+      "dependsOn": "BloomFlyWebsite: build",
+      "problemMatcher": [],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}
