@@ -28,7 +28,7 @@ const socialLinks = [
     <nav aria-label={locale === "fr" ? "Navigation du pied de page" : "Footer navigation"}>
       <p class="footer-title">{locale === "fr" ? "Bloom & Fly" : "Bloom & Fly"}</p>
       <a href={withBase(r.home)}>{t.nav.home}</a>
-      <a href={withBase(r.discover)}>{locale === "fr" ? "Découvrir Bloom & Fly" : "Discover Bloom & Fly"}</a>
+      <a href={withBase(r.discover)}>{t.nav.discover}</a>
       <a href={withBase(r.about)}>{t.nav.about}</a>
     </nav>
 
@@ -93,7 +93,7 @@ const socialLinks = [
 
   .footer-inner {
     display: grid;
-    grid-template-columns: minmax(8rem, 0.78fr) minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.25fr) auto;
+    grid-template-columns: minmax(11rem, 0.9fr) minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.25fr) auto;
     gap: clamp(1.7rem, 4vw, 3.2rem);
     width: min(1120px, 100%);
     margin: 0 auto;
@@ -121,7 +121,8 @@ const socialLinks = [
     border-radius: 999px;
     background: linear-gradient(135deg, var(--dream), #247fb2 58%, var(--aqua));
     color: white;
-    font-weight: 760;
+    font-weight: 600;
+    white-space: nowrap;
     cursor: pointer;
     box-shadow: 0 12px 28px rgba(51, 56, 142, 0.18);
   }
@@ -147,7 +148,9 @@ const socialLinks = [
 
   .footer-social {
     display: flex;
+    align-self: start;
     justify-content: flex-end;
+    padding-top: 0.05rem;
   }
 
   .social-links {
@@ -244,7 +247,7 @@ const socialLinks = [
     padding: 0.65rem 1rem;
     border-radius: 999px;
     color: var(--dream);
-    font-weight: 740;
+    font-weight: 650;
     text-align: center;
     text-decoration: none;
   }
