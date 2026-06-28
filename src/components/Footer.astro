@@ -93,7 +93,7 @@ const socialLinks = [
 
   .footer-inner {
     display: grid;
-    grid-template-columns: minmax(11rem, 0.9fr) minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.25fr) auto;
+    grid-template-columns: minmax(12.5rem, 0.95fr) minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1.2fr) auto;
     gap: clamp(1.7rem, 4vw, 3.2rem);
     width: min(1120px, 100%);
     margin: 0 auto;
@@ -115,8 +115,9 @@ const socialLinks = [
     align-items: center;
     justify-content: center;
     min-height: 3rem;
-    width: fit-content;
-    padding: 0.72rem 1.1rem;
+    width: max-content;
+    max-width: 100%;
+    padding: 0.72rem 1rem;
     border: 0;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--dream), #247fb2 58%, var(--aqua));
@@ -129,6 +130,8 @@ const socialLinks = [
 
   .footer-brand {
     display: grid;
+    width: max-content;
+    max-width: 100%;
     align-content: start;
     justify-items: center;
   }
