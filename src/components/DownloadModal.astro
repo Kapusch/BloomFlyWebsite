@@ -1,0 +1,185 @@
+---
+import StoreBadges from "./StoreBadges.astro";
+import { labels, type Locale } from "../data/site";
+import { withBase } from "../utils/paths";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const cta = labels[locale].cta;
+const qrSrc = `/assets/qr/download-${locale}.svg`;
+const copy =
+  locale === "fr"
+    ? {
+        titleAction: "Télécharge",
+        titleBrand: "ßloom & Fly",
+        scan: "Scanne le QR code pour ouvrir la page de téléchargement sur ton téléphone.",
+        stores: "Ou ouvre directement la boutique de ton choix.",
+        close: "Fermer la fenêtre de téléchargement",
+      }
+    : {
+        titleAction: "Download",
+        titleBrand: "ßloom & Fly",
+        scan: "Scan the QR code to open the download page on your phone.",
+        stores: "Or open your preferred store directly.",
+        close: "Close download window",
+      };
+---
+
+<dialog class="download-dialog" data-download-dialog aria-labelledby={`download-title-${locale}`}>
+  <div class="download-panel">
+    <button class="download-close" type="button" data-download-close aria-label={copy.close}>
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M18 6 6 18" />
+      </svg>
+    </button>
+
+    <p class="eyebrow">{cta.primary}</p>
+    <h2 id={`download-title-${locale}`}>{copy.titleAction} <span>{copy.titleBrand}</span></h2>
+    <p class="download-copy">{copy.scan}</p>
+    <div class="qr-frame" aria-label={copy.scan} role="img">
+      <img src={withBase(qrSrc)} alt="" width="240" height="240" loading="lazy" />
+      <img class="qr-logo" src={withBase("/assets/brand/logo-icon.png")} alt="" width="44" height="44" loading="lazy" />
+    </div>
+    <p class="download-copy download-copy--small">{copy.stores}</p>
+    <StoreBadges locale={locale} compact mode="badges" />
+  </div>
+</dialog>
+
+<script is:inline>
+  (() => {
+    const dialogs = document.querySelectorAll("[data-download-dialog]");
+    if (!dialogs.length) return;
+
+    const openDialog = () => {
+      const dialog = document.querySelector("[data-download-dialog]");
+      if (dialog instanceof HTMLDialogElement && !dialog.open) {
+        dialog.showModal();
+      }
+    };
+
+    document.querySelectorAll("[data-download-open]").forEach((button) => {
+      button.addEventListener("click", openDialog);
+    });
+
+    dialogs.forEach((dialog) => {
+      if (!(dialog instanceof HTMLDialogElement)) return;
+
+      dialog.querySelectorAll("[data-download-close]").forEach((button) => {
+        button.addEventListener("click", () => dialog.close());
+      });
+
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    });
+  })();
+</script>
+
+<style>
+  .download-dialog {
+    width: min(28rem, calc(100vw - 2rem));
+    padding: 0;
+    border: 0;
+    border-radius: 1.4rem;
+    background: transparent;
+    color: var(--ink);
+  }
+
+  .download-dialog::backdrop {
+    background: rgba(15, 17, 48, 0.52);
+    backdrop-filter: blur(16px);
+  }
+
+  .download-panel {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    padding: clamp(1.6rem, 5vw, 2.4rem);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 1.4rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(246, 251, 253, 0.94)),
+      radial-gradient(circle at 50% 0%, rgba(95, 196, 213, 0.18), transparent 54%);
+    box-shadow: 0 30px 90px rgba(18, 22, 72, 0.28);
+    text-align: center;
+  }
+
+  .download-close {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(51, 56, 142, 0.08);
+    color: var(--dream);
+    cursor: pointer;
+  }
+
+  .download-close svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 2.2;
+  }
+
+  h2 {
+    max-width: 100%;
+    margin-bottom: 0.75rem;
+    font-size: clamp(2.15rem, 6.8vw, 3.45rem);
+    line-height: 1.02;
+  }
+
+  h2 span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .download-copy {
+    max-width: 21rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    line-height: 1.45;
+  }
+
+  .download-copy--small {
+    margin: 1.1rem 0 0.75rem;
+    font-size: 0.98rem;
+  }
+
+  .qr-frame {
+    position: relative;
+    display: inline-flex;
+    padding: 0.85rem;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 0 18px 40px rgba(51, 56, 142, 0.14);
+  }
+
+  .qr-frame img:first-child {
+    width: min(14rem, 56vw);
+    height: auto;
+  }
+
+  .qr-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: clamp(2rem, 8vw, 2.6rem);
+    height: clamp(2rem, 8vw, 2.6rem);
+    padding: 0.22rem;
+    border-radius: 999px;
+    background: white;
+    box-shadow: 0 6px 18px rgba(32, 36, 87, 0.18);
+    transform: translate(-50%, -50%);
+  }
+</style>

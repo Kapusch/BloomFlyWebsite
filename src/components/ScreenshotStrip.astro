@@ -32,15 +32,13 @@ const screenshots = [
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   figure {
+    display: grid;
+    align-content: start;
     margin: 0;
-  }
-
-  figure:nth-child(even) {
-    margin-top: 2rem;
   }
 
   img {
@@ -71,10 +69,6 @@ const screenshots = [
       grid-template-columns: 1fr;
       width: min(19rem, 100%);
       margin: 0 auto;
-    }
-
-    figure:nth-child(even) {
-      margin-top: 0;
     }
   }
 </style>

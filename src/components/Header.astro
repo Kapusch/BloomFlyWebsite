@@ -1,4 +1,5 @@
 ---
+import DownloadModal from "./DownloadModal.astro";
 import { labels, routes, type Locale } from "../data/site";
 import { withBase } from "../utils/paths";
 
@@ -9,7 +10,6 @@ interface Props {
 const { locale } = Astro.props;
 const t = labels[locale];
 const r = routes[locale];
-const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
 ---
 
 <header class="site-header">
@@ -25,7 +25,7 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
   </nav>
 
   <div class="header-actions">
-    <a class="language" href={withBase(alternateHref)}>{t.switchLabel}</a>
+    <button class="download-cta" type="button" data-download-open>{t.cta.primary}</button>
     <details class="mobile-menu">
       <summary aria-label={locale === "fr" ? "Ouvrir le menu" : "Open menu"}>
         <span></span>
@@ -37,10 +37,11 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
         <a href={withBase(r.discover)}>{t.nav.discover}</a>
         <a href={withBase(r.about)}>{t.nav.about}</a>
         <a href={withBase(r.contact)}>{t.nav.contact}</a>
-        <a href={withBase(alternateHref)}>{t.switchLabel}</a>
+        <button type="button" data-download-open>{t.cta.primary}</button>
       </nav>
     </details>
   </div>
+  <DownloadModal locale={locale} />
 </header>
 
 <style>
@@ -78,8 +79,7 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
     gap: 0.3rem;
   }
 
-  .desktop-nav a,
-  .language {
+  .desktop-nav a {
     min-height: 2.5rem;
     padding: 0.65rem 0.85rem;
     border-radius: 999px;
@@ -89,14 +89,33 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
   }
 
   .desktop-nav a:hover,
-  .desktop-nav a:focus-visible,
-  .language:hover,
-  .language:focus-visible {
+  .desktop-nav a:focus-visible {
     background: rgba(95, 196, 213, 0.14);
   }
 
-  .language {
-    box-shadow: inset 0 0 0 1px rgba(51, 56, 142, 0.14);
+  .download-cta,
+  .mobile-menu nav button {
+    min-height: 2.75rem;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #33388e, #247fb2 58%, #5fc4d5);
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(51, 56, 142, 0.18);
+  }
+
+  .download-cta {
+    padding: 0.7rem 1rem;
+    white-space: nowrap;
+  }
+
+  .download-cta:hover,
+  .download-cta:focus-visible,
+  .mobile-menu nav button:hover,
+  .mobile-menu nav button:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 34px rgba(51, 56, 142, 0.24);
   }
 
   .mobile-menu {
@@ -146,7 +165,8 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
     box-shadow: var(--shadow);
   }
 
-  .mobile-menu nav a {
+  .mobile-menu nav a,
+  .mobile-menu nav button {
     padding: 0.75rem 0.85rem;
     border-radius: 8px;
     color: var(--dream);
@@ -159,9 +179,14 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
     background: rgba(95, 196, 213, 0.12);
   }
 
+  .mobile-menu nav button {
+    margin-top: 0.35rem;
+    color: white;
+  }
+
   @media (max-width: 760px) {
     .desktop-nav,
-    .header-actions > .language {
+    .header-actions > .download-cta {
       display: none;
     }
 

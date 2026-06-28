@@ -1,6 +1,5 @@
 ---
-import StoreBadges from "./StoreBadges.astro";
-import { homeContent, type Locale } from "../data/site";
+import { homeContent, labels, type Locale } from "../data/site";
 import { withBase } from "../utils/paths";
 
 interface Props {
@@ -9,6 +8,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const content = homeContent[locale];
+const ctaLabel = labels[locale].cta.primary;
 const heroScreen = locale === "fr" ? "/assets/screens/fr-home.png" : "/assets/screens/en-home.png";
 const heroBackground = withBase("/assets/illustrations/journey-confidence.png");
 ---
@@ -22,7 +22,7 @@ const heroBackground = withBase("/assets/illustrations/journey-confidence.png");
       <p class="hero-subtitle">{content.subtitle}</p>
       <p class="lead">{content.body}</p>
       <div class="hero-actions">
-        <StoreBadges locale={locale} />
+        <button class="button" type="button" data-download-open>{ctaLabel}</button>
       </div>
     </div>
 

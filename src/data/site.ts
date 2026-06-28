@@ -8,8 +8,16 @@ export const site = {
   },
   contactEmail: "contact@bloomandflyapp.com",
   socials: {
-    instagram: "https://www.instagram.com/bloomandfly_app/",
-    facebook: "https://www.facebook.com/bloomandflyapp",
+    fr: {
+      instagram: "https://www.instagram.com/bloomandfly_app/",
+      facebook: "https://www.facebook.com/bloomandflyapp",
+      tiktok: "https://www.tiktok.com/@bloomandfly_app",
+    },
+    en: {
+      instagram: "https://www.instagram.com/bloomandfly_en/",
+      facebook: "https://www.facebook.com/bloomandflyappen",
+      tiktok: "https://www.tiktok.com/@bloomandfly_en",
+    },
   },
 } as const;
 
@@ -132,20 +140,20 @@ export const homeContent = {
 
 export const practices = {
   fr: [
-    ["Respirations guidées", "Des exercices simples pour ralentir, retrouver ton souffle et apaiser le système nerveux.", "/assets/icons/breaths.png"],
-    ["Mantras et affirmations", "Des phrases d’ancrage pour nourrir la confiance, la joie, l’énergie et la douceur.", "/assets/icons/mantras.png"],
-    ["Mudras", "Des gestes symboliques et guidés pour accompagner ton intention du moment.", "/assets/icons/mudras.png"],
-    ["Rituels express", "Des formats courts pour traverser un pic de stress, préparer le sommeil ou relancer l’énergie.", "/assets/icons/rituals.png"],
-    ["Voyages guidés", "Des immersions intérieures pour explorer tes ressources et te reconnecter à toi.", "/assets/icons/journeys.png"],
-    ["Sons et ambiances", "Des paysages sonores pour respirer, travailler, te poser ou t’endormir.", "/assets/icons/music.png"],
+    ["Respirations guidées", "Des exercices simples pour ralentir, retrouver ton souffle et apaiser le système nerveux.", "/assets/icons/practice-type-breaths.png"],
+    ["Mantras et affirmations", "Des phrases d’ancrage pour nourrir la confiance, la joie, l’énergie et la douceur.", "/assets/icons/practice-type-mantras.png"],
+    ["Mudras", "Des gestes symboliques et guidés pour accompagner ton intention du moment.", "/assets/icons/practice-type-mudras.png"],
+    ["Rituels express", "Des formats courts pour traverser un pic de stress, préparer le sommeil ou relancer l’énergie.", "/assets/icons/practice-type-rituals.png"],
+    ["Voyages guidés", "Des immersions intérieures pour explorer tes ressources et te reconnecter à toi.", "/assets/icons/practice-type-journeys.png"],
+    ["Sons et ambiances", "Des paysages sonores pour respirer, travailler, te poser ou t’endormir.", "/assets/icons/practice-type-music.png"],
   ],
   en: [
-    ["Guided breathing", "Simple exercises to slow down, reconnect with your breath, and soothe your nervous system.", "/assets/icons/breaths.png"],
-    ["Mantras and affirmations", "Grounding words to nurture confidence, joy, energy, and gentleness.", "/assets/icons/mantras.png"],
-    ["Mudras", "Guided symbolic gestures to support the intention you need now.", "/assets/icons/mudras.png"],
-    ["Express rituals", "Short formats to move through stress, prepare for sleep, or restore energy.", "/assets/icons/rituals.png"],
-    ["Guided journeys", "Inner immersions to explore your resources and reconnect with yourself.", "/assets/icons/journeys.png"],
-    ["Sounds and ambiences", "Soundscapes to breathe, focus, settle, or fall asleep.", "/assets/icons/music.png"],
+    ["Guided breathing", "Simple exercises to slow down, reconnect with your breath, and soothe your nervous system.", "/assets/icons/practice-type-breaths.png"],
+    ["Mantras and affirmations", "Grounding words to nurture confidence, joy, energy, and gentleness.", "/assets/icons/practice-type-mantras.png"],
+    ["Mudras", "Guided symbolic gestures to support the intention you need now.", "/assets/icons/practice-type-mudras.png"],
+    ["Express rituals", "Short formats to move through stress, prepare for sleep, or restore energy.", "/assets/icons/practice-type-rituals.png"],
+    ["Guided journeys", "Inner immersions to explore your resources and reconnect with yourself.", "/assets/icons/practice-type-journeys.png"],
+    ["Sounds and ambiences", "Soundscapes to breathe, focus, settle, or fall asleep.", "/assets/icons/practice-type-music.png"],
   ],
 } as const;
 
