@@ -39,8 +39,8 @@ const meta = pageMeta[locale].home;
       <p class="eyebrow">Practices</p>
       <h2>{content.practicesTitle}</h2>
       <p class="lead section-lead">{content.practicesIntro}</p>
-      <a class="button button--ghost section-cta section-cta--top" href={withBase(routes.en.discover)}>Explore practices</a>
       <PracticeGrid locale={locale} />
+      <a class="button button--ghost section-cta" href={withBase(routes.en.discover)}>Explore practices</a>
     </div>
   </section>
 
@@ -115,16 +115,13 @@ const meta = pageMeta[locale].home;
   }
 
   .section-cta {
-    margin-top: 1.4rem;
+    display: flex;
+    width: fit-content;
+    margin: 1.6rem auto 0;
   }
 
   .section-lead {
     max-width: 64rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .section-cta--top {
-    margin-top: 0;
     margin-bottom: 1.6rem;
   }
 

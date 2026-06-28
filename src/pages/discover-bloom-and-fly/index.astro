@@ -62,7 +62,6 @@ const experiences = [
   <section class="section page-hero">
     <div class="container page-hero-inner">
       <div>
-        <p class="eyebrow">Découvrir</p>
         <h1>Découvrir <span>ßloom & Fly</span></h1>
         <p class="hero-text">Bloom & Fly t’invite à respirer, ralentir et te reconnecter à toi.</p>
         <p class="hero-text">À travers des pratiques simples et guidées, l’application t’accompagne vers un bien-être plus profond, jour après jour.</p>
@@ -96,7 +95,7 @@ const experiences = [
     <div class="container">
       <p class="eyebrow">Programmes</p>
       <h2>Expériences guidées</h2>
-      <p class="lead section-lead">Découvre des expériences guidées créées à partir des pratiques de Bloom & Fly. Chaque programme explore une thématique de bien-être — comme apaiser le stress, mieux dormir, retrouver ton énergie ou renforcer la confiance. Ils t’accompagnent pour retrouver équilibre et sérénité au quotidien.</p>
+      <p class="lead section-lead">Découvre des expériences guidées créées à partir des pratiques de Bloom & Fly. Chaque programme explore une thématique de bien-être : apaiser le stress, mieux dormir, retrouver ton énergie ou renforcer la confiance. Ils t’accompagnent pour retrouver équilibre et sérénité au quotidien.</p>
       <div class="experience-grid">
         {
           experiences.map((experience) => (
@@ -112,11 +111,10 @@ const experiences = [
   </section>
 
   <section class="section section--soft adaptive-section">
-    <div class="narrow">
+    <div class="container">
       <p class="eyebrow">Personnalisation</p>
       <h2>Une application qui s’adapte à toi</h2>
-      <h3>Pratique à ton rythme</h3>
-      <p>Bloom & Fly s’adapte à toi, à ton humeur et à ton temps disponible. Tu peux créer tes propres pratiques de respiration ou de mantra, ajouter tes favoris pour les retrouver facilement, et recevoir des rappels bienveillants pour garder ton élan. Et bientôt, tu pourras suivre ton évolution et voir ton chemin s’épanouir au fil du temps.</p>
+      <p class="lead section-lead">Bloom & Fly s’adapte à toi, à ton humeur et à ton temps disponible. Tu peux créer tes propres pratiques de respiration ou de mantra, ajouter tes favoris pour les retrouver facilement, et recevoir des rappels bienveillants pour garder ton élan. Et bientôt, tu pourras suivre ton évolution et voir ton chemin s’épanouir au fil du temps.</p>
     </div>
   </section>
 
@@ -173,7 +171,6 @@ const experiences = [
     max-height: 28rem;
     object-fit: contain;
     border-radius: 8px;
-    filter: drop-shadow(0 14px 26px rgba(51, 56, 142, 0.12));
   }
 
   .detail-list {
@@ -203,6 +200,19 @@ const experiences = [
     filter: drop-shadow(0 12px 22px rgba(51, 56, 142, 0.12));
   }
 
+  .detail-item:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) 7.5rem;
+  }
+
+  .detail-item:nth-child(even) img {
+    grid-column: 2;
+  }
+
+  .detail-item:nth-child(even) div {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
   .experience-card img {
     justify-self: center;
     width: 5.4rem;
@@ -211,8 +221,7 @@ const experiences = [
   }
 
   .detail-item p,
-  .experience-card p,
-  .adaptive-section p {
+  .experience-card p {
     margin-bottom: 0;
   }
 
@@ -258,6 +267,16 @@ const experiences = [
       width: 100%;
       margin-right: 0;
       margin-left: 0;
+    }
+
+    .detail-item:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+
+    .detail-item:nth-child(even) img,
+    .detail-item:nth-child(even) div {
+      grid-column: auto;
+      grid-row: auto;
     }
   }
 </style>

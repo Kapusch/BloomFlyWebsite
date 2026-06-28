@@ -62,7 +62,6 @@ const experiences = [
   <section class="section page-hero">
     <div class="container page-hero-inner">
       <div>
-        <p class="eyebrow">Discover</p>
         <h1>Discover <span>ßloom & Fly</span></h1>
         <p class="hero-text">Bloom & Fly invites you to breathe, slow down, and reconnect with yourself.</p>
         <p class="hero-text">Through simple, guided practices, the app supports you in cultivating deeper well-being, day after day.</p>
@@ -96,7 +95,7 @@ const experiences = [
     <div class="container">
       <p class="eyebrow">Programs</p>
       <h2>Guided experiences</h2>
-      <p class="lead section-lead">Discover guided experiences created from Bloom & Fly’s well-being practices. Each program explores a well-being theme, such as easing stress, sleeping better, restoring energy, or strengthening confidence. They support you in finding balance and serenity in everyday life.</p>
+      <p class="lead section-lead">Discover guided experiences created from Bloom & Fly’s well-being practices. Each program explores a well-being theme: easing stress, sleeping better, restoring energy, or strengthening confidence. They support you in finding balance and serenity in everyday life.</p>
       <div class="experience-grid">
         {
           experiences.map((experience) => (
@@ -112,11 +111,10 @@ const experiences = [
   </section>
 
   <section class="section section--soft adaptive-section">
-    <div class="narrow">
+    <div class="container">
       <p class="eyebrow">Personalization</p>
       <h2>An app that adapts to you</h2>
-      <h3>Practice at your own pace</h3>
-      <p>Bloom & Fly adapts to you — to your mood and the time you have. You can create your own breathing or mantra practices, add favorites to find them easily, and receive gentle reminders to help you keep your momentum. And soon, you’ll be able to follow your progress and watch your path blossom over time.</p>
+      <p class="lead section-lead">Bloom & Fly adapts to you, to your mood and the time you have. You can create your own breathing or mantra practices, add favorites to find them easily, and receive gentle reminders to help you keep your momentum. And soon, you’ll be able to follow your progress and watch your path blossom over time.</p>
     </div>
   </section>
 
@@ -173,7 +171,6 @@ const experiences = [
     max-height: 28rem;
     object-fit: contain;
     border-radius: 8px;
-    filter: drop-shadow(0 14px 26px rgba(51, 56, 142, 0.12));
   }
 
   .detail-list {
@@ -203,6 +200,19 @@ const experiences = [
     filter: drop-shadow(0 12px 22px rgba(51, 56, 142, 0.12));
   }
 
+  .detail-item:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) 7.5rem;
+  }
+
+  .detail-item:nth-child(even) img {
+    grid-column: 2;
+  }
+
+  .detail-item:nth-child(even) div {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
   .experience-card img {
     justify-self: center;
     width: 5.4rem;
@@ -211,8 +221,7 @@ const experiences = [
   }
 
   .detail-item p,
-  .experience-card p,
-  .adaptive-section p {
+  .experience-card p {
     margin-bottom: 0;
   }
 
@@ -258,6 +267,16 @@ const experiences = [
       width: 100%;
       margin-right: 0;
       margin-left: 0;
+    }
+
+    .detail-item:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+
+    .detail-item:nth-child(even) img,
+    .detail-item:nth-child(even) div {
+      grid-column: auto;
+      grid-row: auto;
     }
   }
 </style>

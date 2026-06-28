@@ -11,7 +11,6 @@ const meta = pageMeta[locale].about;
   <section class="section about-hero">
     <div class="container about-layout">
       <div class="about-copy">
-        <p class="eyebrow">À propos</p>
         <h1>Notre histoire</h1>
         <p class="lead">Bloom & Fly est né du parcours de Pauline et de Jean-Emmanuel, partenaires dans la vie comme dans ce projet.</p>
         <p>Depuis l’enfance, Pauline a toujours été particulièrement sensible au stress, une présence qui s’est renforcée au fil des années. Puis un problème de santé a tout bousculé. Cette épreuve l’a ramenée à l’essentiel : écouter son corps, ralentir, et chercher ce qui lui fait réellement du bien. Elle a exploré de nombreuses pratiques, qui l’ont chacune aidée à mieux comprendre ses besoins.</p>
@@ -19,12 +18,13 @@ const meta = pageMeta[locale].about;
         <p>Deux personnalités différentes, deux façons de vivre le quotidien… et pourtant, un même besoin : des pratiques simples pour se recentrer, apaiser et retrouver de l’équilibre.</p>
         <p>C’est de cette complémentarité qu’est née Bloom & Fly : une application pensée pour accompagner chacun selon ses besoins, qu’il s’agisse de retrouver du calme, de l’énergie ou davantage d’harmonie intérieure. Un espace apaisant et bienveillant où chacun peut explorer, à son rythme, ce qui lui fait du bien, même en quelques minutes.</p>
       </div>
-      <img src={withBase("/assets/brand/logo-pastille.png")} alt="" width="512" height="512" loading="eager" />
+      <img class="about-photo" src={withBase("/assets/illustrations/photo-mission.png")} alt="" width="1024" height="1024" loading="eager" />
     </div>
   </section>
 
   <section class="section">
-    <div class="narrow text-section">
+    <div class="container text-section">
+      <p class="eyebrow">Mission</p>
       <h2>Notre mission</h2>
       <p>Notre mission est d’accompagner chacun vers un mieux-être réel et durable en offrant un espace simple et structuré pour retrouver calme, stabilité et énergie au quotidien.</p>
       <p>Dans un contexte où le rythme s’accélère et où le stress devient omniprésent, Bloom & Fly aide chaque personne, quel que soit son âge ou son niveau d’expérience, à réintroduire du mieux-être dans sa journée, même lorsqu’elle manque de temps.</p>
@@ -64,15 +64,26 @@ const meta = pageMeta[locale].about;
 
   .about-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(12rem, 18rem);
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.55fr);
     gap: clamp(2rem, 5vw, 4rem);
-    align-items: start;
+    align-items: center;
   }
 
-  .about-layout img {
+  .about-layout h1 {
+    max-width: 100%;
+    font-size: clamp(3.4rem, 6.5vw, 5.3rem);
+    line-height: 0.96;
+  }
+
+  .about-photo {
     justify-self: center;
-    width: min(18rem, 70vw);
-    height: auto;
+    width: min(25rem, 78vw);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+    border: 10px solid rgba(255, 255, 255, 0.88);
+    border-radius: 2rem 6rem 2rem 6rem;
+    box-shadow: 0 20px 48px rgba(51, 56, 142, 0.12);
   }
 
   .about-copy p:not(.eyebrow),
@@ -92,7 +103,7 @@ const meta = pageMeta[locale].about;
 
   .values-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     counter-reset: values;
   }
@@ -109,10 +120,6 @@ const meta = pageMeta[locale].about;
       linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(223, 242, 251, 0.42)),
       linear-gradient(90deg, rgba(241, 146, 165, 0.16), transparent 46%),
       rgba(255, 255, 255, 0.78);
-  }
-
-  .value-card:nth-child(1) {
-    grid-row: span 2;
   }
 
   .value-card:nth-child(2) {
@@ -163,10 +170,6 @@ const meta = pageMeta[locale].about;
 
     .values-grid {
       grid-template-columns: 1fr;
-    }
-
-    .value-card:nth-child(1) {
-      grid-row: auto;
     }
 
     .value-card {
