@@ -2,11 +2,12 @@
 import ScreenshotStrip from "../../components/ScreenshotStrip.astro";
 import StoreBadges from "../../components/StoreBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { pageMeta } from "../../data/site";
+import { homeContent, pageMeta } from "../../data/site";
 import { withBase } from "../../utils/paths";
 
 const locale = "fr";
 const meta = pageMeta[locale].discover;
+const home = homeContent[locale];
 
 const practices = [
   {
@@ -62,9 +63,9 @@ const experiences = [
     <div class="container page-hero-inner">
       <div>
         <p class="eyebrow">Découvrir</p>
-        <h1>Découvrir ßloom & Fly</h1>
-        <p class="lead">Bloom & Fly t’invite à respirer, ralentir et te reconnecter à toi.</p>
-        <p>À travers des pratiques simples et guidées, l’application t’accompagne vers un bien-être plus profond, jour après jour.</p>
+        <h1>Découvrir <span>ßloom & Fly</span></h1>
+        <p class="hero-text">Bloom & Fly t’invite à respirer, ralentir et te reconnecter à toi.</p>
+        <p class="hero-text">À travers des pratiques simples et guidées, l’application t’accompagne vers un bien-être plus profond, jour après jour.</p>
       </div>
       <img src={withBase("/assets/illustrations/mascot-premium-promo.png")} alt="" width="1692" height="1117" loading="eager" />
     </div>
@@ -74,7 +75,7 @@ const experiences = [
     <div class="container">
       <p class="eyebrow">Pratiques</p>
       <h2>Les pratiques au cœur de ßloom & Fly</h2>
-      <p class="lead practice-intro">Bloom & Fly réunit des pratiques complémentaires, chacune ayant son propre rôle dans ton bien-être. Découvre comment ces approches fonctionnent et se complètent pour t’accompagner au quotidien.</p>
+      <p class="lead section-lead">Bloom & Fly réunit des pratiques complémentaires, chacune ayant son propre rôle dans ton bien-être. Découvre comment ces approches fonctionnent et se complètent pour t’accompagner au quotidien.</p>
       <div class="detail-list">
         {
           practices.map((practice) => (
@@ -95,7 +96,7 @@ const experiences = [
     <div class="container">
       <p class="eyebrow">Programmes</p>
       <h2>Expériences guidées</h2>
-      <p class="lead">Découvre des expériences guidées créées à partir des pratiques de Bloom & Fly. Chaque programme explore une thématique de bien-être — comme apaiser le stress, mieux dormir, retrouver ton énergie ou renforcer la confiance. Ils t’accompagnent pour retrouver équilibre et sérénité au quotidien.</p>
+      <p class="lead section-lead">Découvre des expériences guidées créées à partir des pratiques de Bloom & Fly. Chaque programme explore une thématique de bien-être — comme apaiser le stress, mieux dormir, retrouver ton énergie ou renforcer la confiance. Ils t’accompagnent pour retrouver équilibre et sérénité au quotidien.</p>
       <div class="experience-grid">
         {
           experiences.map((experience) => (
@@ -123,13 +124,14 @@ const experiences = [
     <div class="container">
       <p class="eyebrow">Aperçu</p>
       <h2>Les pratiques dans l’application</h2>
+      <p class="lead section-lead">{home.screenshotsIntro}</p>
       <ScreenshotStrip locale={locale} />
     </div>
   </section>
 
   <section class="section section--soft download-section">
     <div class="narrow">
-      <h2>Prêt(e) à retrouver calme et joie au quotidien ?</h2>
+      <h2>Prêt·e à retrouver calme et joie au quotidien ?</h2>
       <StoreBadges locale={locale} compact mode="badges" />
     </div>
   </section>
@@ -142,14 +144,26 @@ const experiences = [
 
   .page-hero-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.78fr);
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr);
     gap: 2rem;
     align-items: center;
   }
 
   .page-hero h1 {
-    max-width: 9.2ch;
-    font-size: clamp(3.6rem, 7.5vw, 6rem);
+    max-width: 100%;
+    font-size: clamp(3.9rem, 7.4vw, 5.7rem);
+  }
+
+  .page-hero h1 span {
+    white-space: nowrap;
+  }
+
+  .hero-text {
+    max-width: 42rem;
+    margin-bottom: 1rem;
+    color: rgba(32, 36, 87, 0.8);
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    line-height: 1.65;
   }
 
   .page-hero img {
@@ -162,7 +176,7 @@ const experiences = [
 
   .detail-list {
     display: grid;
-    gap: 1rem;
+    gap: 1.25rem;
     margin-top: 1.8rem;
   }
 
@@ -171,11 +185,32 @@ const experiences = [
     grid-template-columns: 7.5rem minmax(0, 1fr);
     gap: 1.35rem;
     align-items: center;
+    width: min(100%, 66rem);
     padding: 1.45rem;
     border: 1px solid var(--line);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.78);
     box-shadow: 0 18px 42px rgba(51, 56, 142, 0.08);
+  }
+
+  .detail-item:nth-child(odd) {
+    justify-self: end;
+    margin-right: clamp(0rem, 3vw, 2.4rem);
+  }
+
+  .detail-item:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) 7.5rem;
+    justify-self: start;
+    margin-left: clamp(0rem, 3vw, 2.4rem);
+  }
+
+  .detail-item:nth-child(even) img {
+    grid-column: 2;
+  }
+
+  .detail-item:nth-child(even) div {
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .detail-item img {
@@ -225,8 +260,9 @@ const experiences = [
     margin-top: 1.4rem;
   }
 
-  .practice-intro {
+  .section-lead {
     max-width: 64rem;
+    margin-bottom: 1.6rem;
   }
 
   @media (max-width: 820px) {
@@ -239,6 +275,19 @@ const experiences = [
   @media (max-width: 640px) {
     .detail-item {
       grid-template-columns: 1fr;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .detail-item:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+
+    .detail-item:nth-child(even) img,
+    .detail-item:nth-child(even) div {
+      grid-column: auto;
+      grid-row: auto;
     }
   }
 </style>

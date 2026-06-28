@@ -86,13 +86,19 @@ export const homeContent = {
     subtitle: "Sens-toi mieux jour après jour",
     body: "L’application qui t’aide à prendre soin de ton esprit, de tes émotions et de ton équilibre.",
     outcomesTitle: "Choisis ce dont tu as besoin maintenant",
+    outcomesIntro:
+      "Un moment de calme, un regain d’énergie ou un peu plus de confiance : Bloom & Fly t’aide à choisir la pratique juste, selon ce que tu ressens maintenant.",
     outcomes: [
       ["Trouve le calme", "Apaise tes pensées qui tournent en boucle", "/assets/outcomes/need-calm.png"],
       ["Retrouve de l’énergie", "Retrouve ton élan et profite pleinement de ta journée", "/assets/outcomes/need-energy.png"],
       ["Cultive ta confiance", "Avance chaque jour avec plus d’assurance", "/assets/outcomes/need-confidence.png"],
     ],
     practicesTitle: "Des pratiques guidées, pensées pour le quotidien",
+    practicesIntro:
+      "Respirations, mantras, mudras, rituels express, voyages guidés et sons : choisis la pratique qui répond à ton besoin du moment.",
     screenshotsTitle: "Une expérience douce, claire et mobile",
+    screenshotsIntro:
+      "Retrouve tes pratiques, tes favoris et tes espaces de pause dans une interface pensée pour rester simple, lisible et apaisante.",
     storyTitle: "Une application née d’un besoin concret",
     story:
       "Bloom & Fly est né du parcours de Pauline et Jean-Emmanuel, avec l’envie de rendre les pratiques de bien-être plus accessibles, plus belles et plus faciles à intégrer dans les journées réelles.",
@@ -104,13 +110,19 @@ export const homeContent = {
     subtitle: "Feel better day after day",
     body: "The app that helps you care for your mind, your emotions, and your inner balance.",
     outcomesTitle: "Choose what you need right now",
+    outcomesIntro:
+      "A moment of calm, renewed energy, or a little more confidence: Bloom & Fly helps you choose the right practice for what you feel now.",
     outcomes: [
       ["Find calm", "Soothe racing thoughts and find a sense of peace", "/assets/outcomes/need-calm.png"],
       ["Restore your energy", "Feel more energized and enjoy each day more fully", "/assets/outcomes/need-energy.png"],
       ["Build your confidence", "Move forward each day with greater self-confidence", "/assets/outcomes/need-confidence.png"],
     ],
     practicesTitle: "Guided practices made for everyday life",
+    practicesIntro:
+      "Breathing, mantras, mudras, express rituals, guided journeys, and sounds: choose the practice that fits what you need right now.",
     screenshotsTitle: "A soft, clear mobile experience",
+    screenshotsIntro:
+      "Find your practices, favorites, and moments of pause in an interface designed to stay simple, readable, and soothing.",
     storyTitle: "An app born from a real need",
     story:
       "Bloom & Fly grew from Pauline and Jean-Emmanuel’s path, with a wish to make wellbeing practices more accessible, more beautiful, and easier to bring into real daily life.",

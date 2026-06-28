@@ -19,6 +19,7 @@ const meta = pageMeta[locale].home;
     <div class="container">
       <p class="eyebrow">Everyday support</p>
       <h2>{content.outcomesTitle}</h2>
+      <p class="lead section-lead">{content.outcomesIntro}</p>
       <div class="grid grid--3 outcome-grid">
         {content.outcomes.map(([title, text, image]) => (
           <article class="card outcome">
@@ -37,7 +38,7 @@ const meta = pageMeta[locale].home;
     <div class="container">
       <p class="eyebrow">Practices</p>
       <h2>{content.practicesTitle}</h2>
-      <p class="lead practice-lead">Breathing, mantras, mudras, express rituals, guided journeys, and sounds: choose the practice that fits what you need right now.</p>
+      <p class="lead section-lead">{content.practicesIntro}</p>
       <a class="button button--ghost section-cta section-cta--top" href={withBase(routes.en.discover)}>Explore practices</a>
       <PracticeGrid locale={locale} />
     </div>
@@ -47,6 +48,7 @@ const meta = pageMeta[locale].home;
     <div class="container">
       <p class="eyebrow">In the app</p>
       <h2>{content.screenshotsTitle}</h2>
+      <p class="lead section-lead">{content.screenshotsIntro}</p>
       <ScreenshotStrip locale={locale} />
     </div>
   </section>
@@ -116,8 +118,9 @@ const meta = pageMeta[locale].home;
     margin-top: 1.4rem;
   }
 
-  .practice-lead {
-    margin-bottom: 1rem;
+  .section-lead {
+    max-width: 64rem;
+    margin-bottom: 1.6rem;
   }
 
   .section-cta--top {
