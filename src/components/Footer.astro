@@ -9,7 +9,6 @@ interface Props {
 const { locale } = Astro.props;
 const t = labels[locale];
 const r = routes[locale];
-const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
 ---
 
 <footer class="site-footer">
@@ -45,8 +44,6 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
       <p class="footer-title follow">{t.follow}</p>
       <a href={site.socials.instagram}>Instagram</a>
       <a href={site.socials.facebook}>Facebook</a>
-      <p class="footer-title follow">{locale === "fr" ? "Langue" : "Language"}</p>
-      <a href={withBase(alternateHref)}>{t.switchLabel}</a>
     </div>
   </div>
 </footer>
