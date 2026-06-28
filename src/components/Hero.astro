@@ -65,7 +65,7 @@ const heroBackground = withBase("/assets/illustrations/journey-confidence.png");
   .hero-subtitle {
     margin-top: 1.25rem;
     margin-bottom: 1.2rem;
-    color: var(--dream-deep);
+    color: var(--dream);
     font-size: clamp(1.45rem, 3vw, 2.45rem);
     font-weight: 850;
     line-height: 1.12;
@@ -75,6 +75,10 @@ const heroBackground = withBase("/assets/illustrations/journey-confidence.png");
     max-width: 100%;
     font-size: clamp(4.2rem, 8vw, 6.15rem);
     white-space: nowrap;
+    background: linear-gradient(90deg, var(--dream) 0%, var(--aqua) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
   }
 
   .hero-actions {
