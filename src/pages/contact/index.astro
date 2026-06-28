@@ -38,9 +38,9 @@ const meta = pageMeta[locale].contact;
           <label for="subject">Objet <span aria-hidden="true">*</span></label>
           <select id="subject" name="Objet" required>
             <option value="">Sélectionner une option</option>
-            <option value="Demande d'information">Demande d’information</option>
-            <option value="Support technique">Support technique</option>
-            <option value="Commentaire">Commentaire</option>
+            <option value="Support">Support</option>
+            <option value="Presse">Presse</option>
+            <option value="Partenariats">Partenariats</option>
             <option value="Autre">Autre</option>
           </select>
         </div>
@@ -94,6 +94,7 @@ const meta = pageMeta[locale].contact;
     grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.66fr);
     gap: clamp(2rem, 5vw, 4rem);
     align-items: center;
+    padding-block: 1rem;
   }
 
   .contact-layout h1 {
@@ -113,7 +114,7 @@ const meta = pageMeta[locale].contact;
     justify-self: center;
     width: min(25rem, 78vw);
     border-radius: 8px;
-    filter: drop-shadow(0 24px 54px rgba(51, 56, 142, 0.14));
+    filter: drop-shadow(0 14px 26px rgba(51, 56, 142, 0.12));
   }
 
   .contact-form-section {
@@ -128,15 +129,35 @@ const meta = pageMeta[locale].contact;
   }
 
   .contact-form {
+    position: relative;
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.15rem;
     padding: clamp(1.35rem, 3vw, 2rem);
-    background: rgba(255, 255, 255, 0.86);
+    overflow: hidden;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)) padding-box,
+      linear-gradient(135deg, rgba(95, 196, 213, 0.7), rgba(241, 146, 165, 0.42), rgba(51, 56, 142, 0.32)) border-box;
+    box-shadow: 0 28px 70px rgba(51, 56, 142, 0.12);
+  }
+
+  .contact-form::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 0.35rem;
+    background: linear-gradient(90deg, var(--aqua), var(--coral), var(--sun));
   }
 
   .field {
     display: grid;
     gap: 0.42rem;
+  }
+
+  .field:nth-child(n + 3),
+  .contact-form .button {
+    grid-column: 1 / -1;
   }
 
   label {
@@ -154,10 +175,14 @@ const meta = pageMeta[locale].contact;
     width: 100%;
     border: 1px solid rgba(51, 56, 142, 0.18);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.96);
     color: var(--ink);
     padding: 0.9rem 1rem;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
   }
 
   textarea {
@@ -169,6 +194,8 @@ const meta = pageMeta[locale].contact;
   textarea:focus {
     outline: 3px solid rgba(95, 196, 213, 0.24);
     border-color: var(--aqua);
+    background: white;
+    box-shadow: 0 10px 26px rgba(51, 56, 142, 0.08);
   }
 
   .field-help {
@@ -202,10 +229,12 @@ const meta = pageMeta[locale].contact;
   }
 
   .contact-points article {
-    padding: 1rem 1.1rem;
-    border-left: 3px solid var(--aqua);
-    border-radius: 0 8px 8px 0;
-    background: rgba(255, 255, 255, 0.58);
+    padding: 1.05rem 1.15rem;
+    border: 1px solid rgba(51, 56, 142, 0.1);
+    border-left: 4px solid var(--aqua);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.68);
+    box-shadow: 0 14px 34px rgba(51, 56, 142, 0.06);
   }
 
   .contact-points h3 {
@@ -229,6 +258,10 @@ const meta = pageMeta[locale].contact;
 
     .contact-aside {
       order: -1;
+    }
+
+    .contact-form {
+      grid-template-columns: 1fr;
     }
   }
 </style>

@@ -92,31 +92,33 @@ const meta = pageMeta[locale].about;
 
   .values-grid {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 1.1rem;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 1rem;
     counter-reset: values;
   }
 
   .value-card {
     position: relative;
-    min-height: 17rem;
-    padding: 1.55rem;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.3rem 1.05rem;
+    align-content: start;
+    padding: clamp(1.3rem, 3vw, 1.85rem);
     overflow: hidden;
     background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(223, 242, 251, 0.38)),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(223, 242, 251, 0.42)),
+      linear-gradient(90deg, rgba(241, 146, 165, 0.16), transparent 46%),
       rgba(255, 255, 255, 0.78);
   }
 
   .value-card:nth-child(1) {
-    grid-column: span 5;
+    grid-row: span 2;
   }
 
   .value-card:nth-child(2) {
-    grid-column: span 7;
-  }
-
-  .value-card:nth-child(3) {
-    grid-column: 3 / span 8;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 241, 235, 0.64)),
+      rgba(255, 255, 255, 0.78);
   }
 
   .value-card::before {
@@ -126,7 +128,8 @@ const meta = pageMeta[locale].about;
     place-items: center;
     width: 2.5rem;
     height: 2.5rem;
-    margin-bottom: 1.1rem;
+    grid-row: span 4;
+    margin-top: 0.15rem;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--dream), var(--aqua));
     color: white;
@@ -139,8 +142,14 @@ const meta = pageMeta[locale].about;
     font-size: clamp(1.55rem, 2.4vw, 2.05rem);
   }
 
+  .value-card h3,
+  .value-card p {
+    grid-column: 2;
+  }
+
   .value-card p {
     font-size: 1.05rem;
+    line-height: 1.68;
   }
 
   .value-card p:last-child {
@@ -156,9 +165,17 @@ const meta = pageMeta[locale].about;
       grid-template-columns: 1fr;
     }
 
-    .value-card:nth-child(1),
-    .value-card:nth-child(2),
-    .value-card:nth-child(3) {
+    .value-card:nth-child(1) {
+      grid-row: auto;
+    }
+
+    .value-card {
+      grid-template-columns: 1fr;
+    }
+
+    .value-card::before,
+    .value-card h3,
+    .value-card p {
       grid-column: auto;
     }
   }
