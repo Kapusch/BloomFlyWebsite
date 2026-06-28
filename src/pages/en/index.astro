@@ -20,10 +20,13 @@ const meta = pageMeta[locale].home;
       <p class="eyebrow">Everyday support</p>
       <h2>{content.outcomesTitle}</h2>
       <div class="grid grid--3 outcome-grid">
-        {content.outcomes.map(([title, text]) => (
+        {content.outcomes.map(([title, text, image]) => (
           <article class="card outcome">
-            <h3>{title}</h3>
-            <p>{text}</p>
+            <img src={withBase(image)} alt="" width="180" height="180" loading="lazy" />
+            <div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
           </article>
         ))}
       </div>
@@ -34,8 +37,9 @@ const meta = pageMeta[locale].home;
     <div class="container">
       <p class="eyebrow">Practices</p>
       <h2>{content.practicesTitle}</h2>
+      <p class="lead practice-lead">Breathing, mantras, mudras, express rituals, guided journeys, and sounds: choose the practice that fits what you need right now.</p>
+      <a class="button button--ghost section-cta section-cta--top" href={withBase(routes.en.discover)}>Explore practices</a>
       <PracticeGrid locale={locale} />
-      <a class="button button--ghost section-cta" href={withBase(routes.en.discover)}>Explore practices</a>
     </div>
   </section>
 
@@ -63,14 +67,26 @@ const meta = pageMeta[locale].home;
     <div class="narrow">
       <h2>{content.finalTitle}</h2>
       <p class="lead">Download Bloom & Fly and explore the first practices for free. The 7-day premium trial lets you go further when you want to.</p>
-      <StoreBadges locale={locale} compact />
+      <StoreBadges locale={locale} compact mode="badges" />
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .outcome {
-    padding: 1.35rem;
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    min-height: 10.5rem;
+    padding: 1.15rem;
+    overflow: hidden;
+  }
+
+  .outcome img {
+    width: 5.5rem;
+    height: 5.5rem;
+    object-fit: contain;
   }
 
   .outcome h3 {
@@ -100,6 +116,15 @@ const meta = pageMeta[locale].home;
     margin-top: 1.4rem;
   }
 
+  .practice-lead {
+    margin-bottom: 1rem;
+  }
+
+  .section-cta--top {
+    margin-top: 0;
+    margin-bottom: 1.6rem;
+  }
+
   .story img {
     justify-self: center;
     width: min(18rem, 65vw);
@@ -117,6 +142,12 @@ const meta = pageMeta[locale].home;
 
   @media (max-width: 760px) {
     .story {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .outcome {
       grid-template-columns: 1fr;
     }
   }

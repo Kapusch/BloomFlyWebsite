@@ -5,9 +5,10 @@ import { withBase } from "../utils/paths";
 interface Props {
   locale: Locale;
   compact?: boolean;
+  mode?: "responsive" | "badges";
 }
 
-const { locale, compact = false } = Astro.props;
+const { locale, compact = false, mode = "responsive" } = Astro.props;
 const t = labels[locale].cta;
 const appStoreBadge = locale === "fr" ? "/assets/store/app-store-fr.svg" : "/assets/store/app-store-en.svg";
 const googleBadge = locale === "fr" ? "/assets/store/google-play-fr.png" : "/assets/store/google-play-en.png";
@@ -15,7 +16,7 @@ const appStoreAlt = locale === "fr" ? "Télécharger dans l’App Store" : "Down
 const googleAlt = locale === "fr" ? "Disponible sur Google Play" : "Get it on Google Play";
 ---
 
-<div class:list={["store-cta", compact && "store-cta--compact"]}>
+<div class:list={["store-cta", compact && "store-cta--compact", mode === "badges" && "store-cta--badges-only"]}>
   <a class="button smart-link" href={site.smartDownload[locale]}>{t.primary}</a>
   <div class="store-badges" aria-label={t.stores}>
     <a href={site.appStoreUrl} aria-label={appStoreAlt}>
@@ -82,6 +83,19 @@ const googleAlt = locale === "fr" ? "Disponible sur Google Play" : "Get it on Go
 
     .store-cta .button {
       width: 100%;
+    }
+
+    .store-cta--badges-only {
+      align-items: center;
+    }
+
+    .store-cta--badges-only .smart-link {
+      display: none;
+    }
+
+    .store-cta--badges-only .store-badges {
+      display: flex;
+      justify-content: center;
     }
   }
 </style>

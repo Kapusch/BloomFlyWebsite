@@ -81,15 +81,15 @@ export const labels = {
 
 export const homeContent = {
   fr: {
-    title: "Bloom & Fly",
+    title: "ßloom & Fly",
     eyebrow: "Application de bien-être",
     subtitle: "Sens-toi mieux jour après jour",
     body: "L’application qui t’aide à prendre soin de ton esprit, de tes émotions et de ton équilibre.",
     outcomesTitle: "Choisis ce dont tu as besoin maintenant",
     outcomes: [
-      ["Trouve le calme", "Apaise tes pensées qui tournent en boucle"],
-      ["Retrouve de l’énergie", "Retrouve ton élan et profite pleinement de ta journée"],
-      ["Cultive ta confiance", "Avance chaque jour avec plus d’assurance"],
+      ["Trouve le calme", "Apaise tes pensées qui tournent en boucle", "/assets/outcomes/need-calm.png"],
+      ["Retrouve de l’énergie", "Retrouve ton élan et profite pleinement de ta journée", "/assets/outcomes/need-energy.png"],
+      ["Cultive ta confiance", "Avance chaque jour avec plus d’assurance", "/assets/outcomes/need-confidence.png"],
     ],
     practicesTitle: "Des pratiques guidées, pensées pour le quotidien",
     screenshotsTitle: "Une expérience douce, claire et mobile",
@@ -99,15 +99,15 @@ export const homeContent = {
     finalTitle: "Commence avec quelques minutes, aujourd’hui.",
   },
   en: {
-    title: "Bloom & Fly",
+    title: "ßloom & Fly",
     eyebrow: "Wellbeing app",
     subtitle: "Feel better day after day",
     body: "The app that helps you care for your mind, your emotions, and your inner balance.",
     outcomesTitle: "Choose what you need right now",
     outcomes: [
-      ["Find calm", "Soothe racing thoughts and find a sense of peace"],
-      ["Restore your energy", "Feel more energized and enjoy each day more fully"],
-      ["Build your confidence", "Move forward each day with greater self-confidence"],
+      ["Find calm", "Soothe racing thoughts and find a sense of peace", "/assets/outcomes/need-calm.png"],
+      ["Restore your energy", "Feel more energized and enjoy each day more fully", "/assets/outcomes/need-energy.png"],
+      ["Build your confidence", "Move forward each day with greater self-confidence", "/assets/outcomes/need-confidence.png"],
     ],
     practicesTitle: "Guided practices made for everyday life",
     screenshotsTitle: "A soft, clear mobile experience",
