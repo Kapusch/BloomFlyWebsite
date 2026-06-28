@@ -35,6 +35,7 @@ const meta = pageMeta[locale].home;
       <p class="eyebrow">Pratiques</p>
       <h2>{content.practicesTitle}</h2>
       <PracticeGrid locale={locale} />
+      <a class="button button--ghost section-cta" href={withBase(routes.fr.discover)}>Découvrir les pratiques</a>
     </div>
   </section>
 
@@ -93,6 +94,10 @@ const meta = pageMeta[locale].home;
 
   .story .button {
     margin-top: 1rem;
+  }
+
+  .section-cta {
+    margin-top: 1.4rem;
   }
 
   .story img {

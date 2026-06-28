@@ -1,6 +1,6 @@
 ---
 import StoreBadges from "./StoreBadges.astro";
-import { homeContent, labels, routes, type Locale } from "../data/site";
+import { homeContent, type Locale } from "../data/site";
 import { withBase } from "../utils/paths";
 
 interface Props {
@@ -9,8 +9,6 @@ interface Props {
 
 const { locale } = Astro.props;
 const content = homeContent[locale];
-const t = labels[locale];
-const r = routes[locale];
 const heroScreen = locale === "fr" ? "/assets/screens/fr-home.png" : "/assets/screens/en-home.png";
 const heroBackground = withBase("/assets/illustrations/journey-confidence.png");
 ---
@@ -25,7 +23,6 @@ const heroBackground = withBase("/assets/illustrations/journey-confidence.png");
       <p class="lead">{content.body}</p>
       <div class="hero-actions">
         <StoreBadges locale={locale} />
-        <a class="button button--ghost" href={withBase(r.discover)}>{t.cta.secondary}</a>
       </div>
     </div>
 
@@ -74,6 +71,11 @@ const heroBackground = withBase("/assets/illustrations/journey-confidence.png");
     line-height: 1.12;
   }
 
+  .hero h1 {
+    max-width: none;
+    white-space: nowrap;
+  }
+
   .hero-actions {
     display: grid;
     gap: 0.85rem;
@@ -107,6 +109,10 @@ const heroBackground = withBase("/assets/illustrations/journey-confidence.png");
 
     .hero-inner {
       grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+      white-space: normal;
     }
 
     .phone-stage {

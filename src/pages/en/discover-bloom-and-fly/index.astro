@@ -1,5 +1,4 @@
 ---
-import PracticeGrid from "../../../components/PracticeGrid.astro";
 import ScreenshotStrip from "../../../components/ScreenshotStrip.astro";
 import StoreBadges from "../../../components/StoreBadges.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
@@ -8,6 +7,54 @@ import { withBase } from "../../../utils/paths";
 
 const locale = "en";
 const meta = pageMeta[locale].discover;
+
+const practices = [
+  {
+    title: "Breathing practices",
+    image: "/assets/icons/breaths.png",
+    text:
+      "Breathing exercises help you calm your mind, reduce stress, restore your inner balance, and support better sleep. In Bloom & Fly, you can follow guided breathing exercises or create your own by choosing your rhythm, duration, and the soundscape that helps you relax. Each practice is accompanied by clear explanations and visual animations.",
+  },
+  {
+    title: "Mantras & positive affirmations",
+    image: "/assets/icons/mantras.png",
+    text:
+      "Words have the power to soothe, comfort, and transform your state of mind. When repeated regularly, they help strengthen confidence, lighten the mental load, and cultivate a more stable, positive energy in everyday life. In Bloom & Fly, mantras are organized by needs or associated with chakras, so they can support you according to how you’re feeling in the moment. You can also create your own mantras to express what you need most.",
+  },
+  {
+    title: "Mudras",
+    image: "/assets/icons/mudras.png",
+    text:
+      "Mudras are hand gestures that invite calm, presence, and balance. Practiced mindfully, they help release tension, soothe the mind, and bring you back to center. In Bloom & Fly, each mudra is presented with a clear explanation, an illustration, its main benefits, and its connection to the chakras, to guide you step by step.",
+  },
+  {
+    title: "Chakras",
+    image: "/assets/brand/logo-pastille.png",
+    text:
+      "Chakras represent the flow of energy within the body and influence our emotions, balance, and vitality. By exploring the seven chakras, you will discover their functions, colors, and the signs of balance or imbalance. You will learn how to harmonize each energy center through the mudras, mantras, and associated practices.",
+  },
+  {
+    title: "Sounds & ambiences",
+    image: "/assets/icons/music.png",
+    text:
+      "Listen to sounds and ambiences designed to support your moments of well-being. Let the music soften your mind, envelop you during a practice, or calm you throughout your day, helping you recenter, fall asleep more peacefully, or create a bubble of quiet wherever you are.",
+  },
+];
+
+const experiences = [
+  {
+    title: "Express rituals",
+    image: "/assets/icons/rituals.png",
+    text:
+      "Give yourself a moment of calm with guided practices under 5 minutes, designed to ease an emotion or gently help you regain your balance. Perfect for taking a pause, releasing pressure, or bringing serenity back into your day.",
+  },
+  {
+    title: "Guided journeys",
+    image: "/assets/icons/journeys.png",
+    text:
+      "Discover yourself through longer experiences you can follow at your own pace, allowing you to explore a wellness theme more deeply. Each journey guides you along an inner path to recenter, recharge, and better understand yourself.",
+  },
+];
 ---
 
 <BaseLayout locale={locale} title={meta.title} description={meta.description} path={meta.path} alternatePath={meta.alternate}>
@@ -15,9 +62,9 @@ const meta = pageMeta[locale].discover;
     <div class="container page-hero-inner">
       <div>
         <p class="eyebrow">Discover</p>
-        <h1>Practices to come back to yourself</h1>
-        <p class="lead">Bloom & Fly brings together short, guided, visual formats to help you breathe, settle, move through emotions, or restore energy.</p>
-        <StoreBadges locale={locale} />
+        <h1>Discover Bloom & Fly</h1>
+        <p class="lead">Bloom & Fly invites you to breathe, slow down, and reconnect with yourself.</p>
+        <p>Through simple, guided practices, the app supports you in cultivating deeper well-being, day after day.</p>
       </div>
       <img src={withBase("/assets/illustrations/ritual-stress.png")} alt="" width="1200" height="899" loading="eager" />
     </div>
@@ -25,32 +72,65 @@ const meta = pageMeta[locale].discover;
 
   <section class="section section--soft">
     <div class="container">
-      <p class="eyebrow">Practice families</p>
-      <h2>Choose what you need now</h2>
-      <PracticeGrid locale={locale} />
+      <p class="eyebrow">Practices</p>
+      <h2>The practices at the heart of Bloom & Fly</h2>
+      <p class="lead">Bloom & Fly brings together complementary practices, each playing its own role in your well-being. Discover how these approaches work and complement one another to support you in your daily life.</p>
+      <div class="detail-list">
+        {
+          practices.map((practice, index) => (
+            <article class:list={["detail-item", index % 2 === 1 && "detail-item--reverse"]}>
+              <div>
+                <h3>{practice.title}</h3>
+                <p>{practice.text}</p>
+              </div>
+              <img src={withBase(practice.image)} alt="" width="180" height="180" loading="lazy" />
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container feature-grid">
-      <article>
-        <img src={withBase("/assets/illustrations/ritual-energy.png")} alt="" width="1200" height="800" loading="lazy" />
-        <h3>Express rituals</h3>
-        <p>A few minutes to calm a wave, support your energy, or prepare a transition in your day.</p>
-      </article>
-      <article>
-        <img src={withBase("/assets/illustrations/ritual-sleep.png")} alt="" width="1200" height="800" loading="lazy" />
-        <h3>Journeys and rest</h3>
-        <p>More immersive experiences to soften mental noise, settle down, and return to a gentler rhythm.</p>
-      </article>
+    <div class="container">
+      <p class="eyebrow">Programs</p>
+      <h2>Guided experiences</h2>
+      <p class="lead">Discover guided experiences created from Bloom & Fly’s well-being practices. Each program explores a well-being theme, such as easing stress, sleeping better, restoring energy, or strengthening confidence. They support you in finding balance and serenity in everyday life.</p>
+      <div class="experience-grid">
+        {
+          experiences.map((experience) => (
+            <article class="card experience-card">
+              <img src={withBase(experience.image)} alt="" width="160" height="160" loading="lazy" />
+              <h3>{experience.title}</h3>
+              <p>{experience.text}</p>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
-  <section class="section section--soft">
+  <section class="section section--soft adaptive-section">
+    <div class="narrow">
+      <p class="eyebrow">Personalization</p>
+      <h2>An app that adapts to you</h2>
+      <h3>Practice at your own pace</h3>
+      <p>Bloom & Fly adapts to you — to your mood and the time you have. You can create your own breathing or mantra practices, add favorites to find them easily, and receive gentle reminders to help you keep your momentum. And soon, you’ll be able to follow your progress and watch your path blossom over time.</p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <p class="eyebrow">Preview</p>
       <h2>Practices inside the app</h2>
       <ScreenshotStrip locale={locale} />
+    </div>
+  </section>
+
+  <section class="section section--soft download-section">
+    <div class="narrow">
+      <h2>Ready to rediscover calm and joy in your daily life?</h2>
+      <StoreBadges locale={locale} compact />
     </div>
   </section>
 </BaseLayout>
@@ -60,40 +140,109 @@ const meta = pageMeta[locale].discover;
     background: linear-gradient(120deg, rgba(255, 241, 235, 0.95), rgba(223, 242, 251, 0.7));
   }
 
-  .page-hero-inner,
-  .feature-grid {
+  .page-hero-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.82fr);
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.78fr);
     gap: 2rem;
     align-items: center;
   }
 
   .page-hero h1 {
-    max-width: 11ch;
+    max-width: 12ch;
   }
 
-  .page-hero img,
-  .feature-grid img {
+  .page-hero img {
     width: 100%;
     border-radius: 8px;
     box-shadow: var(--shadow);
   }
 
-  .feature-grid article {
+  .detail-list {
     display: grid;
-    align-content: start;
     gap: 1rem;
+    margin-top: 1.8rem;
   }
 
-  .feature-grid h3,
-  .feature-grid p {
-    margin: 0;
+  .detail-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 8rem;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.35rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 18px 42px rgba(51, 56, 142, 0.08);
+  }
+
+  .detail-item--reverse {
+    grid-template-columns: 8rem minmax(0, 1fr);
+  }
+
+  .detail-item--reverse div {
+    grid-column: 2;
+  }
+
+  .detail-item--reverse img {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .detail-item img,
+  .experience-card img {
+    justify-self: center;
+    width: 5.4rem;
+    height: 5.4rem;
+    object-fit: contain;
+  }
+
+  .detail-item p,
+  .experience-card p,
+  .adaptive-section p {
+    margin-bottom: 0;
+  }
+
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.8rem;
+  }
+
+  .experience-card {
+    padding: 1.35rem;
+  }
+
+  .experience-card img {
+    margin-bottom: 1rem;
+  }
+
+  .download-section {
+    text-align: center;
+  }
+
+  .download-section :global(.store-cta) {
+    justify-content: center;
+    margin-top: 1.4rem;
   }
 
   @media (max-width: 820px) {
     .page-hero-inner,
-    .feature-grid {
+    .experience-grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .detail-item,
+    .detail-item--reverse {
+      grid-template-columns: 1fr;
+    }
+
+    .detail-item--reverse div,
+    .detail-item--reverse img {
+      grid-column: auto;
+      grid-row: auto;
     }
   }
 </style>
