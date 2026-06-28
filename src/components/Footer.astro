@@ -1,5 +1,6 @@
 ---
 import { labels, routes, site, type Locale } from "../data/site";
+import { withBase } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -14,7 +15,7 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="/assets/brand/logo-horizontal.png" alt="Bloom & Fly" width="300" height="44" loading="lazy" />
+      <img src={withBase("/assets/brand/logo-horizontal.png")} alt="Bloom & Fly" width="300" height="44" loading="lazy" />
       <p>
         {locale === "fr"
           ? "Respirations guidées, mantras, mudras, rituels express et voyages intérieurs pour prendre soin de toi au quotidien."
@@ -24,18 +25,18 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
 
     <nav aria-label={locale === "fr" ? "Navigation du pied de page" : "Footer navigation"}>
       <p class="footer-title">{locale === "fr" ? "Bloom & Fly" : "Bloom & Fly"}</p>
-      <a href={r.home}>{t.nav.home}</a>
-      <a href={r.discover}>{t.nav.discover}</a>
-      <a href={r.about}>{t.nav.about}</a>
-      <a href={r.contact}>{t.nav.contact}</a>
+      <a href={withBase(r.home)}>{t.nav.home}</a>
+      <a href={withBase(r.discover)}>{t.nav.discover}</a>
+      <a href={withBase(r.about)}>{t.nav.about}</a>
+      <a href={withBase(r.contact)}>{t.nav.contact}</a>
     </nav>
 
     <nav aria-label={t.footerLegal}>
       <p class="footer-title">{t.footerLegal}</p>
-      <a href={r.legalNotices}>{locale === "fr" ? "Mentions légales" : "Legal Notices"}</a>
-      <a href={r.privacyPolicy}>{locale === "fr" ? "Politique de confidentialité" : "Privacy Policy"}</a>
-      <a href={r.termsOfService}>{locale === "fr" ? "CGU" : "Terms of Service"}</a>
-      <a href={r.termsOfSale}>{locale === "fr" ? "CGV" : "Terms of Sale"}</a>
+      <a href={withBase(r.legalNotices)}>{locale === "fr" ? "Mentions légales" : "Legal Notices"}</a>
+      <a href={withBase(r.privacyPolicy)}>{locale === "fr" ? "Politique de confidentialité" : "Privacy Policy"}</a>
+      <a href={withBase(r.termsOfService)}>{locale === "fr" ? "CGU" : "Terms of Service"}</a>
+      <a href={withBase(r.termsOfSale)}>{locale === "fr" ? "CGV" : "Terms of Sale"}</a>
     </nav>
 
     <div>
@@ -45,7 +46,7 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
       <a href={site.socials.instagram}>Instagram</a>
       <a href={site.socials.facebook}>Facebook</a>
       <p class="footer-title follow">{locale === "fr" ? "Langue" : "Language"}</p>
-      <a href={alternateHref}>{t.switchLabel}</a>
+      <a href={withBase(alternateHref)}>{t.switchLabel}</a>
     </div>
   </div>
 </footer>

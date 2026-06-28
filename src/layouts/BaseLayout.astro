@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { site, type Locale } from "../data/site";
+import { withBase } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -17,6 +18,25 @@ const canonical = new URL(path, site.baseUrl).toString();
 const alternate = alternatePath ? new URL(alternatePath, site.baseUrl).toString() : undefined;
 const ogImage = new URL("/assets/og/bloomfly-og.png", site.baseUrl).toString();
 const alternateLang = locale === "fr" ? "en" : "fr";
+const regularFont = withBase("/assets/fonts/Nunito-VariableFont_wght.ttf");
+const italicFont = withBase("/assets/fonts/Nunito-Italic-VariableFont_wght.ttf");
+const fontFaces = `
+  @font-face {
+    font-family: "Nunito";
+    src: url("${regularFont}") format("truetype");
+    font-style: normal;
+    font-weight: 200 1000;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Nunito";
+    src: url("${italicFont}") format("truetype");
+    font-style: italic;
+    font-weight: 200 1000;
+    font-display: swap;
+  }
+`;
 ---
 
 <!doctype html>
@@ -31,7 +51,7 @@ const alternateLang = locale === "fr" ? "en" : "fr";
     {alternate && <link rel="alternate" hreflang={alternateLang} href={alternate} />}
     <link rel="alternate" hreflang={locale} href={canonical} />
     <link rel="alternate" hreflang="x-default" href={new URL("/", site.baseUrl).toString()} />
-    <link rel="icon" type="image/png" href="/assets/brand/logo-icon.png" />
+    <link rel="icon" type="image/png" href={withBase("/assets/brand/logo-icon.png")} />
     <meta property="og:site_name" content="Bloom & Fly" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={locale === "fr" ? "fr_FR" : "en_US"} />
@@ -44,23 +64,8 @@ const alternateLang = locale === "fr" ? "en" : "fr";
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
+    <style is:inline set:html={fontFaces}></style>
     <style is:global>
-      @font-face {
-        font-family: "Nunito";
-        src: url("/assets/fonts/Nunito-VariableFont_wght.ttf") format("truetype");
-        font-style: normal;
-        font-weight: 200 1000;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: "Nunito";
-        src: url("/assets/fonts/Nunito-Italic-VariableFont_wght.ttf") format("truetype");
-        font-style: italic;
-        font-weight: 200 1000;
-        font-display: swap;
-      }
-
       :root {
         color-scheme: light;
         --dream: #33388e;

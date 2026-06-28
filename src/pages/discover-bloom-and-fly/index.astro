@@ -4,6 +4,7 @@ import ScreenshotStrip from "../../components/ScreenshotStrip.astro";
 import StoreBadges from "../../components/StoreBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { pageMeta } from "../../data/site";
+import { withBase } from "../../utils/paths";
 
 const locale = "fr";
 const meta = pageMeta[locale].discover;
@@ -18,7 +19,7 @@ const meta = pageMeta[locale].discover;
         <p class="lead">Bloom & Fly rassemble des formats courts, guidés et visuels pour t’aider à respirer, te recentrer, traverser une émotion ou retrouver de l’énergie.</p>
         <StoreBadges locale={locale} />
       </div>
-      <img src="/assets/illustrations/ritual-stress.png" alt="" width="1200" height="899" loading="eager" />
+      <img src={withBase("/assets/illustrations/ritual-stress.png")} alt="" width="1200" height="899" loading="eager" />
     </div>
   </section>
 
@@ -33,12 +34,12 @@ const meta = pageMeta[locale].discover;
   <section class="section">
     <div class="container feature-grid">
       <article>
-        <img src="/assets/illustrations/ritual-energy.png" alt="" width="1200" height="800" loading="lazy" />
+        <img src={withBase("/assets/illustrations/ritual-energy.png")} alt="" width="1200" height="800" loading="lazy" />
         <h3>Rituels express</h3>
         <p>Quelques minutes pour calmer un pic, soutenir ton énergie ou préparer une transition dans ta journée.</p>
       </article>
       <article>
-        <img src="/assets/illustrations/ritual-sleep.png" alt="" width="1200" height="800" loading="lazy" />
+        <img src={withBase("/assets/illustrations/ritual-sleep.png")} alt="" width="1200" height="800" loading="lazy" />
         <h3>Voyages et repos</h3>
         <p>Des expériences plus immersives pour relâcher le mental, te poser et retrouver un rythme plus doux.</p>
       </article>

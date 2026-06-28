@@ -5,6 +5,7 @@ import ScreenshotStrip from "../components/ScreenshotStrip.astro";
 import StoreBadges from "../components/StoreBadges.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { homeContent, pageMeta, routes } from "../data/site";
+import { withBase } from "../utils/paths";
 
 const locale = "fr";
 const content = homeContent[locale];
@@ -51,9 +52,9 @@ const meta = pageMeta[locale].home;
         <p class="eyebrow">Histoire</p>
         <h2>{content.storyTitle}</h2>
         <p class="lead">{content.story}</p>
-        <a class="button button--ghost" href={routes.fr.about}>À propos de Bloom & Fly</a>
+        <a class="button button--ghost" href={withBase(routes.fr.about)}>À propos de Bloom & Fly</a>
       </div>
-      <img src="/assets/brand/logo-pastille.png" alt="" width="512" height="512" loading="lazy" />
+      <img src={withBase("/assets/brand/logo-pastille.png")} alt="" width="512" height="512" loading="lazy" />
     </div>
   </section>
 

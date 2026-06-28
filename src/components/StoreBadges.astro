@@ -1,5 +1,6 @@
 ---
 import { labels, site, type Locale } from "../data/site";
+import { withBase } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -18,10 +19,10 @@ const googleAlt = locale === "fr" ? "Disponible sur Google Play" : "Get it on Go
   <a class="button smart-link" href={site.smartDownload[locale]}>{t.primary}</a>
   <div class="store-badges" aria-label={t.stores}>
     <a href={site.appStoreUrl} aria-label={appStoreAlt}>
-      <img src={appStoreBadge} alt={appStoreAlt} width="259" height="82" loading="lazy" />
+      <img src={withBase(appStoreBadge)} alt={appStoreAlt} width="259" height="82" loading="lazy" />
     </a>
     <a href={site.playStoreUrl} aria-label={googleAlt}>
-      <img src={googleBadge} alt={googleAlt} width="478" height="142" loading="lazy" />
+      <img src={withBase(googleBadge)} alt={googleAlt} width="478" height="142" loading="lazy" />
     </a>
   </div>
 </div>

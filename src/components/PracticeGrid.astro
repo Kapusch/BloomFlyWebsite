@@ -1,5 +1,6 @@
 ---
 import { practices, type Locale } from "../data/site";
+import { withBase } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -13,7 +14,7 @@ const items = practices[locale];
   {
     items.map(([title, description, icon]) => (
       <article class="practice-card">
-        <img src={icon} alt="" width="160" height="160" loading="lazy" />
+        <img src={withBase(icon)} alt="" width="160" height="160" loading="lazy" />
         <h3>{title}</h3>
         <p>{description}</p>
       </article>

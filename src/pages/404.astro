@@ -1,17 +1,18 @@
 ---
 import StoreBadges from "../components/StoreBadges.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/paths";
 ---
 
 <BaseLayout locale="fr" title="Page introuvable - Bloom & Fly" description="La page demandée est introuvable." path="/404.html" noindex>
   <section class="section not-found">
     <div class="narrow">
-      <img src="/assets/brand/logo-pastille.png" alt="" width="512" height="512" loading="eager" />
+      <img src={withBase("/assets/brand/logo-pastille.png")} alt="" width="512" height="512" loading="eager" />
       <p class="eyebrow">404</p>
       <h1>Page introuvable</h1>
       <p class="lead">La page que tu cherches n’existe pas ou a changé d’adresse. Tu peux revenir à l’accueil ou essayer l’application.</p>
       <div class="actions">
-        <a class="button button--ghost" href="/">Retour à l’accueil</a>
+        <a class="button button--ghost" href={withBase("/")}>Retour à l’accueil</a>
         <StoreBadges locale="fr" compact />
       </div>
     </div>

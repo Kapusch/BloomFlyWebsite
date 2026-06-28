@@ -1,5 +1,6 @@
 ---
 import { labels, routes, type Locale } from "../data/site";
+import { withBase } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -12,19 +13,19 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
 ---
 
 <header class="site-header">
-  <a class="brand" href={r.home} aria-label="Bloom & Fly">
-    <img src="/assets/brand/logo-horizontal.png" alt="Bloom & Fly" width="300" height="44" />
+  <a class="brand" href={withBase(r.home)} aria-label="Bloom & Fly">
+    <img src={withBase("/assets/brand/logo-horizontal.png")} alt="Bloom & Fly" width="300" height="44" />
   </a>
 
   <nav class="desktop-nav" aria-label={locale === "fr" ? "Navigation principale" : "Main navigation"}>
-    <a href={r.home}>{t.nav.home}</a>
-    <a href={r.discover}>{t.nav.discover}</a>
-    <a href={r.about}>{t.nav.about}</a>
-    <a href={r.contact}>{t.nav.contact}</a>
+    <a href={withBase(r.home)}>{t.nav.home}</a>
+    <a href={withBase(r.discover)}>{t.nav.discover}</a>
+    <a href={withBase(r.about)}>{t.nav.about}</a>
+    <a href={withBase(r.contact)}>{t.nav.contact}</a>
   </nav>
 
   <div class="header-actions">
-    <a class="language" href={alternateHref}>{t.switchLabel}</a>
+    <a class="language" href={withBase(alternateHref)}>{t.switchLabel}</a>
     <details class="mobile-menu">
       <summary aria-label={locale === "fr" ? "Ouvrir le menu" : "Open menu"}>
         <span></span>
@@ -32,11 +33,11 @@ const alternateHref = locale === "fr" ? routes.en.home : routes.fr.home;
         <span></span>
       </summary>
       <nav aria-label={locale === "fr" ? "Navigation mobile" : "Mobile navigation"}>
-        <a href={r.home}>{t.nav.home}</a>
-        <a href={r.discover}>{t.nav.discover}</a>
-        <a href={r.about}>{t.nav.about}</a>
-        <a href={r.contact}>{t.nav.contact}</a>
-        <a href={alternateHref}>{t.switchLabel}</a>
+        <a href={withBase(r.home)}>{t.nav.home}</a>
+        <a href={withBase(r.discover)}>{t.nav.discover}</a>
+        <a href={withBase(r.about)}>{t.nav.about}</a>
+        <a href={withBase(r.contact)}>{t.nav.contact}</a>
+        <a href={withBase(alternateHref)}>{t.switchLabel}</a>
       </nav>
     </details>
   </div>

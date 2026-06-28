@@ -2,6 +2,7 @@
 import StoreBadges from "../../../components/StoreBadges.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { pageMeta, site } from "../../../data/site";
+import { withBase } from "../../../utils/paths";
 
 const locale = "en";
 const meta = pageMeta[locale].contact;
@@ -16,7 +17,7 @@ const meta = pageMeta[locale].contact;
         <p class="lead">For support, partnerships, press, or general questions, write to us directly by email.</p>
         <a class="button" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
       </div>
-      <img src="/assets/illustrations/ritual-energy.png" alt="" width="1200" height="800" loading="eager" />
+      <img src={withBase("/assets/illustrations/ritual-energy.png")} alt="" width="1200" height="800" loading="eager" />
     </div>
   </section>
 

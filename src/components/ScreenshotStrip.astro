@@ -1,5 +1,6 @@
 ---
 import { type Locale } from "../data/site";
+import { withBase } from "../utils/paths";
 
 interface Props {
   locale: Locale;
@@ -19,7 +20,7 @@ const screenshots = [
   {
     screenshots.map(([src, label]) => (
       <figure>
-        <img src={src} alt={label} width="414" height="900" loading="lazy" />
+        <img src={withBase(src)} alt={label} width="414" height="900" loading="lazy" />
         <figcaption>{label}</figcaption>
       </figure>
     ))

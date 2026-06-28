@@ -2,6 +2,7 @@
 import StoreBadges from "../../components/StoreBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { pageMeta } from "../../data/site";
+import { withBase } from "../../utils/paths";
 
 const locale = "fr";
 const meta = pageMeta[locale].about;
@@ -15,7 +16,7 @@ const meta = pageMeta[locale].about;
         <h1>Une application née d’un besoin de calme</h1>
         <p class="lead">Bloom & Fly est né du parcours de Pauline et Jean-Emmanuel, partenaires dans la vie comme dans ce projet. L’idée : rendre les pratiques de bien-être plus accessibles, plus belles et plus faciles à utiliser quand le quotidien devient chargé.</p>
       </div>
-      <img src="/assets/brand/logo-pastille.png" alt="" width="512" height="512" loading="eager" />
+      <img src={withBase("/assets/brand/logo-pastille.png")} alt="" width="512" height="512" loading="eager" />
     </div>
   </section>
 
