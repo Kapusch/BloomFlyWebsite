@@ -21,34 +21,31 @@ const socialLinks = [
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src={withBase("/assets/brand/logo-horizontal.png")} alt="Bloom & Fly" width="300" height="44" loading="lazy" />
-      <p>
-        {locale === "fr"
-          ? "Respirations guidées, mantras, mudras, rituels express et voyages intérieurs pour prendre soin de toi au quotidien."
-          : "Guided breathing, mantras, mudras, express rituals, and inner journeys for everyday wellbeing."}
-      </p>
+      <img src={withBase("/assets/brand/logo-pastille-dream-blue.png")} alt="Bloom & Fly" width="512" height="512" loading="lazy" />
+      <button class="footer-cta" type="button" data-download-open>{t.cta.primary}</button>
     </div>
 
     <nav aria-label={locale === "fr" ? "Navigation du pied de page" : "Footer navigation"}>
       <p class="footer-title">{locale === "fr" ? "Bloom & Fly" : "Bloom & Fly"}</p>
       <a href={withBase(r.home)}>{t.nav.home}</a>
-      <a href={withBase(r.discover)}>{t.nav.discover}</a>
+      <a href={withBase(r.discover)}>{locale === "fr" ? "Découvrir Bloom & Fly" : "Discover Bloom & Fly"}</a>
       <a href={withBase(r.about)}>{t.nav.about}</a>
-      <a href={withBase(r.contact)}>{t.nav.contact}</a>
+    </nav>
+
+    <nav aria-label={locale === "fr" ? "Aide et contact" : "Help and contact"}>
+      <p class="footer-title">{locale === "fr" ? "Aide & contact" : "Help & contact"}</p>
+      <a href={withBase(r.contact)}>{locale === "fr" ? "Page de contact" : "Contact page"}</a>
     </nav>
 
     <nav aria-label={t.footerLegal}>
-      <p class="footer-title">{t.footerLegal}</p>
+      <p class="footer-title">{locale === "fr" ? "Légal" : "Legal"}</p>
       <a href={withBase(r.legalNotices)}>{locale === "fr" ? "Mentions légales" : "Legal Notices"}</a>
       <a href={withBase(r.privacyPolicy)}>{locale === "fr" ? "Politique de confidentialité" : "Privacy Policy"}</a>
       <a href={withBase(r.termsOfService)}>{locale === "fr" ? "CGU" : "Terms of Service"}</a>
       <a href={withBase(r.termsOfSale)}>{locale === "fr" ? "CGV" : "Terms of Sale"}</a>
     </nav>
 
-    <div>
-      <p class="footer-title">{t.contact}</p>
-      <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
-      <p class="footer-title follow">{t.follow}</p>
+    <div class="footer-social">
       <div class="social-links" aria-label={t.follow}>
         {
           socialLinks.map(([key, label, href]) => (
@@ -96,11 +93,11 @@ const socialLinks = [
 
   .footer-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
-    gap: 2rem;
+    grid-template-columns: minmax(8rem, 0.78fr) minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.25fr) auto;
+    gap: clamp(1.7rem, 4vw, 3.2rem);
     width: min(1120px, 100%);
     margin: 0 auto;
-    padding: clamp(1.5rem, 4vw, 2.25rem);
+    padding: clamp(2rem, 4.8vw, 3rem);
     border: 1px solid rgba(51, 56, 142, 0.1);
     border-radius: 1.25rem;
     background: rgba(255, 255, 255, 0.78);
@@ -108,49 +105,67 @@ const socialLinks = [
   }
 
   .footer-brand img {
-    width: min(15rem, 100%);
+    width: min(9rem, 100%);
     height: auto;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
   }
 
-  .footer-brand p {
-    max-width: 24rem;
-    margin-bottom: 0;
+  .footer-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    width: fit-content;
+    padding: 0.72rem 1.1rem;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--dream), #247fb2 58%, var(--aqua));
+    color: white;
+    font-weight: 760;
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(51, 56, 142, 0.18);
   }
 
-  nav,
-  .footer-inner > div:not(.footer-brand) {
+  .footer-brand {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+  }
+
+  nav {
     display: grid;
     align-content: start;
     gap: 0.58rem;
   }
 
   .footer-title {
-    margin: 0 0 0.15rem;
+    margin: 0 0 0.75rem;
     color: var(--dream);
-    font-size: 0.92rem;
-    font-weight: 900;
+    font-size: 1.12rem;
+    font-weight: 820;
   }
 
-  .follow {
-    margin-top: 1.1rem;
+  .footer-social {
+    display: flex;
+    justify-content: flex-end;
   }
 
   .social-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem;
+    align-items: center;
+    gap: 0.72rem;
   }
 
   .social-links a {
     display: inline-grid;
     place-items: center;
-    width: 2.55rem;
-    height: 2.55rem;
-    border-radius: 999px;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 7px;
     background: var(--dream);
     color: white;
-    box-shadow: 0 12px 26px rgba(51, 56, 142, 0.18);
+    box-shadow: none;
     transition:
       transform 180ms ease,
       box-shadow 180ms ease,
@@ -167,12 +182,14 @@ const socialLinks = [
   }
 
   .social-links svg {
-    width: 1.18rem;
-    height: 1.18rem;
+    width: 1.28rem;
+    height: 1.28rem;
     fill: currentColor;
   }
 
   .social-links a[aria-label="Instagram"] svg {
+    width: 1.55rem;
+    height: 1.55rem;
     fill: none;
     stroke: currentColor;
     stroke-linecap: round;
@@ -181,8 +198,10 @@ const socialLinks = [
   }
 
   a {
-    color: rgba(32, 36, 87, 0.78);
+    color: var(--dream);
     text-decoration: none;
+    font-size: 1.08rem;
+    line-height: 1.45;
   }
 
   a:hover,
@@ -201,9 +220,9 @@ const socialLinks = [
 
   .footer-bottom p {
     margin: 0;
-    color: rgba(32, 36, 87, 0.68);
+    color: var(--dream);
     font-size: 0.96rem;
-    font-weight: 800;
+    font-weight: 740;
   }
 
   .language-switch {
@@ -225,7 +244,7 @@ const socialLinks = [
     padding: 0.65rem 1rem;
     border-radius: 999px;
     color: var(--dream);
-    font-weight: 900;
+    font-weight: 740;
     text-align: center;
     text-decoration: none;
   }
@@ -246,8 +265,13 @@ const socialLinks = [
       grid-template-columns: 1fr 1fr;
     }
 
-    .footer-brand {
+    .footer-brand,
+    .footer-social {
       grid-column: 1 / -1;
+    }
+
+    .footer-social {
+      justify-content: flex-start;
     }
   }
 

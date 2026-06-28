@@ -60,8 +60,11 @@ const copy =
       }
     };
 
-    document.querySelectorAll("[data-download-open]").forEach((button) => {
-      button.addEventListener("click", openDialog);
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest("[data-download-open]")) {
+        openDialog();
+      }
     });
 
     dialogs.forEach((dialog) => {

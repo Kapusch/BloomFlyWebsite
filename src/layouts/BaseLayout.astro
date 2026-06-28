@@ -84,8 +84,8 @@ const fontFaces = `
         --peach: #fff1eb;
         --coral: #f192a5;
         --sun: #eda246;
-        --ink: #202457;
-        --muted: rgba(32, 36, 87, 0.72);
+        --ink: #33388e;
+        --muted: #33388e;
         --surface: rgba(255, 255, 255, 0.82);
         --line: rgba(51, 56, 142, 0.14);
         --shadow: 0 24px 70px rgba(51, 56, 142, 0.15);
@@ -206,7 +206,7 @@ const fontFaces = `
 
       .lead {
         max-width: 42rem;
-        color: rgba(32, 36, 87, 0.8);
+        color: var(--dream);
         font-size: clamp(1.15rem, 2vw, 1.35rem);
         line-height: 1.65;
       }
@@ -225,7 +225,7 @@ const fontFaces = `
         border-radius: 999px;
         background: linear-gradient(135deg, var(--dream), #247fb2 55%, var(--aqua));
         color: white;
-        font-weight: 800;
+        font-weight: 780;
         text-decoration: none;
         box-shadow: 0 16px 34px rgba(51, 56, 142, 0.22);
         transition:
@@ -271,15 +271,24 @@ const fontFaces = `
         left: 1rem;
         top: 1rem;
         z-index: 20;
-        transform: translateY(-150%);
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
         padding: 0.75rem 1rem;
         border-radius: 999px;
         background: var(--dream);
         color: white;
       }
 
-      .skip-link:focus {
-        transform: translateY(0);
+      .skip-link:focus,
+      .skip-link:focus-visible {
+        width: auto;
+        height: auto;
+        overflow: visible;
+        clip-path: none;
+        white-space: normal;
       }
 
       @media (max-width: 820px) {
