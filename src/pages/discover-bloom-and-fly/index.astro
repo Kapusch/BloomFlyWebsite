@@ -2,12 +2,12 @@
 import ScreenshotStrip from "../../components/ScreenshotStrip.astro";
 import StoreBadges from "../../components/StoreBadges.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { homeContent, pageMeta } from "../../data/site";
+import { pageMeta } from "../../data/site";
 import { withBase } from "../../utils/paths";
 
 const locale = "fr";
 const meta = pageMeta[locale].discover;
-const home = homeContent[locale];
+const previewIntro = "Explore les pratiques qui te font du bien, à ton rythme.";
 
 const practices = [
   {
@@ -47,13 +47,13 @@ const experiences = [
     title: "Rituels express",
     image: "/assets/icons/rituals.png",
     text:
-      "Offre-toi un instant de calme avec des pratiques guidées de moins de 5 minutes, pensées pour apaiser une émotion ou retrouver ton équilibre en douceur. Idéal pour faire une pause, relâcher la pression ou ramener de la sérénité au cœur de ta journée.",
+      "Offre-toi une pause de 3 minutes avec des pratiques guidées qui combinent plusieurs approches pour retrouver le calme, l'énergie ou préparer le sommeil. Idéal pour faire une pause, relâcher la pression ou retrouver un peu de sérénité au cœur de ta journée.",
   },
   {
     title: "Voyages guidés",
     image: "/assets/icons/journeys.png",
     text:
-      "Pars à la découverte de toi-même à travers des expériences plus longues, à vivre à ton rythme, pour explorer en profondeur un thème de bien-être. Chaque voyage te guide sur un chemin intérieur pour te recentrer, te ressourcer et mieux te comprendre.",
+      "Prends davantage de temps pour toi avec des pratiques guidées qui combinent plusieurs approches autour d'un même thème, comme le calme, le sommeil, l'énergie, la joie ou la confiance. Idéal pour ralentir, te recentrer et t'offrir un véritable moment pour toi.",
   },
 ];
 ---
@@ -114,7 +114,7 @@ const experiences = [
     <div class="container">
       <p class="eyebrow">Personnalisation</p>
       <h2>Une application qui s’adapte à toi</h2>
-      <p class="lead section-lead">Bloom & Fly s’adapte à toi, à ton humeur et à ton temps disponible. Tu peux créer tes propres pratiques de respiration ou de mantra, ajouter tes favoris pour les retrouver facilement, et recevoir des rappels bienveillants pour garder ton élan. Et bientôt, tu pourras suivre ton évolution et voir ton chemin s’épanouir au fil du temps.</p>
+      <p class="lead section-lead">Bloom & Fly s’adapte à toi, à ton humeur et à ton temps disponible. Tu peux créer tes propres pratiques de respiration ou de mantra, ajouter tes favoris pour les retrouver facilement, et recevoir des rappels bienveillants pour garder ton élan. Tu peux aussi retrouver ton historique de pratiques et suivre ton activité au fil du temps.</p>
     </div>
   </section>
 
@@ -122,7 +122,7 @@ const experiences = [
     <div class="container">
       <p class="eyebrow">Aperçu</p>
       <h2>Les pratiques dans l’application</h2>
-      <p class="lead section-lead">{home.screenshotsIntro}</p>
+      <p class="lead section-lead">{previewIntro}</p>
       <ScreenshotStrip locale={locale} />
     </div>
   </section>
@@ -223,6 +223,8 @@ const experiences = [
   .detail-item p,
   .experience-card p {
     margin-bottom: 0;
+    font-size: clamp(1.08rem, 1.6vw, 1.24rem);
+    line-height: 1.68;
   }
 
   .experience-grid {

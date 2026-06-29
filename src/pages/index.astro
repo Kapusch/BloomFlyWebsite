@@ -68,7 +68,7 @@ const meta = pageMeta[locale].home;
   <section class="section final-cta">
     <div class="narrow">
       <h2>{content.finalTitle}</h2>
-      <p class="lead">Télécharge Bloom & Fly et explore gratuitement les premières pratiques. L’essai premium de 7 jours te permet d’aller plus loin si tu le souhaites.</p>
+      <p class="lead">Télécharge Bloom & Fly et découvre gratuitement une sélection de pratiques. Profite ensuite d'un essai gratuit de 7 jours de Bloom & Fly Premium pour explorer l'ensemble de l'application.</p>
       <StoreBadges locale={locale} compact mode="badges" />
     </div>
   </section>
@@ -79,7 +79,7 @@ const meta = pageMeta[locale].home;
     display: grid;
     grid-template-columns: 5.5rem minmax(0, 1fr);
     gap: 1rem;
-    align-items: center;
+    align-items: start;
     min-height: 10.5rem;
     padding: 1.15rem;
     overflow: hidden;
@@ -88,6 +88,7 @@ const meta = pageMeta[locale].home;
   .outcome img {
     width: 5.5rem;
     height: 5.5rem;
+    margin-top: 0.25rem;
     object-fit: contain;
   }
 
@@ -97,6 +98,8 @@ const meta = pageMeta[locale].home;
 
   .outcome p {
     margin-bottom: 0;
+    font-size: clamp(1.08rem, 1.6vw, 1.24rem);
+    line-height: 1.68;
   }
 
   .story-section {

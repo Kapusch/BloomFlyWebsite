@@ -63,19 +63,19 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
       <aside class="contact-aside">
         <p class="eyebrow">Nous écrire</p>
         <h2>On te répond au plus vite</h2>
-        <p class="lead">Pour le support, indique ton appareil, ta plateforme et ce qui s’est passé. Pour une demande média ou partenariat, ajoute ton délai et le contexte de publication.</p>
+        <p class="lead">Choisis le sujet de ta demande, puis indique-nous comment nous pouvons t'aider.</p>
         <div class="contact-points">
           <article>
             <h3>Support</h3>
-            <p>Application, compte, abonnement ou difficulté technique.</p>
+            <p>Application, compte, abonnement ou problème technique.</p>
           </article>
           <article>
             <h3>Presse</h3>
-            <p>Présentation de Bloom & Fly, demande média ou information officielle.</p>
+            <p>Présentation de Bloom & Fly, demande média ou informations officielles.</p>
           </article>
           <article>
             <h3>Partenariats</h3>
-            <p>Collaboration bien-être, contenu, marque ou projet éditorial.</p>
+            <p>Collaboration, contenu ou projet autour du bien-être.</p>
           </article>
         </div>
       </aside>
@@ -329,6 +329,7 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
 
   .contact-form .button {
     width: fit-content;
+    justify-self: center;
     margin-top: 0.4rem;
     font-weight: 600;
     cursor: pointer;

@@ -95,7 +95,7 @@ export const homeContent = {
     body: "L’application qui t’aide à prendre soin de ton esprit, de tes émotions et de ton équilibre.",
     outcomesTitle: "Choisis ce dont tu as besoin maintenant",
     outcomesIntro:
-      "Un moment de calme, un regain d’énergie ou un peu plus de confiance : Bloom & Fly t’aide à choisir la pratique juste, selon ce que tu ressens maintenant.",
+      "Un moment de calme, un regain d’énergie ou un peu plus de confiance : explore les pratiques qui répondent à ton besoin du moment.",
     outcomes: [
       ["Trouve le calme", "Apaise tes pensées qui tournent en boucle", "/assets/outcomes/need-calm.png"],
       ["Retrouve de l’énergie", "Retrouve ton élan et profite pleinement de ta journée", "/assets/outcomes/need-energy.png"],
@@ -103,23 +103,23 @@ export const homeContent = {
     ],
     practicesTitle: "Des pratiques guidées, pensées pour le quotidien",
     practicesIntro:
-      "Respirations, mantras, mudras, rituels express, voyages guidés et sons : choisis la pratique qui répond à ton besoin du moment.",
-    screenshotsTitle: "Une expérience douce, claire et mobile",
+      "Respirations, mantras, mudras, rituels express et voyages guidés : découvre les pratiques qui te font du bien, à ton rythme.",
+    screenshotsTitle: "Prendre soin de toi, en toute simplicité",
     screenshotsIntro:
-      "Retrouve tes pratiques, tes favoris et tes espaces de pause dans une interface pensée pour rester simple, lisible et apaisante.",
+      "Une application claire et intuitive pour retrouver facilement ce qui te fait du bien.",
     storyTitle: "Une application née d’un besoin concret",
     story:
-      "Bloom & Fly est né du parcours de Pauline et Jean-Emmanuel, avec l’envie de rendre les pratiques de bien-être plus accessibles, plus belles et plus faciles à intégrer dans les journées réelles.",
-    finalTitle: "Commence avec quelques minutes, aujourd’hui.",
+      "Bloom & Fly est née du parcours de Pauline et Jean-Emmanuel, avec l'envie de rendre les pratiques de bien-être plus accessibles et plus faciles à intégrer au quotidien.",
+    finalTitle: "Et si tu commençais aujourd'hui ?",
   },
   en: {
     title: "ßloom & Fly",
     eyebrow: "Wellbeing app",
     subtitle: "Feel better day after day",
-    body: "The app that helps you care for your mind, your emotions, and your inner balance.",
+    body: "The app that helps you take care of your mind, your emotions, and your well-being.",
     outcomesTitle: "Choose what you need right now",
     outcomesIntro:
-      "A moment of calm, renewed energy, or a little more confidence: Bloom & Fly helps you choose the right practice for what you feel now.",
+      "A moment of calm, a boost of energy, or a little more confidence: explore practices that match what you need right now.",
     outcomes: [
       ["Find calm", "Soothe racing thoughts and find a sense of peace", "/assets/outcomes/need-calm.png"],
       ["Restore your energy", "Feel more energized and enjoy each day more fully", "/assets/outcomes/need-energy.png"],
@@ -127,33 +127,33 @@ export const homeContent = {
     ],
     practicesTitle: "Guided practices made for everyday life",
     practicesIntro:
-      "Breathing, mantras, mudras, express rituals, guided journeys, and sounds: choose the practice that fits what you need right now.",
-    screenshotsTitle: "A soft, clear mobile experience",
+      "Breathing exercises, mantras, mudras, quick rituals, and guided journeys: discover the practices that help you feel good, at your own pace.",
+    screenshotsTitle: "Taking care of yourself, made simple",
     screenshotsIntro:
-      "Find your practices, favorites, and moments of pause in an interface designed to stay simple, readable, and soothing.",
+      "A clear and intuitive app to easily return to the practices that make you feel good.",
     storyTitle: "An app born from a real need",
     story:
-      "Bloom & Fly grew from Pauline and Jean-Emmanuel’s path, with a wish to make wellbeing practices more accessible, more beautiful, and easier to bring into real daily life.",
-    finalTitle: "Begin with a few minutes today.",
+      "Bloom & Fly was born from Pauline and Jean-Emmanuel's journey, with the goal of making wellness practices more accessible and easier to integrate into everyday life.",
+    finalTitle: "What if you started today?",
   },
 } as const;
 
 export const practices = {
   fr: [
-    ["Respirations guidées", "Des exercices simples pour ralentir, retrouver ton souffle et apaiser le système nerveux.", "/assets/icons/practice-type-breaths.png"],
-    ["Mantras et affirmations", "Des phrases d’ancrage pour nourrir la confiance, la joie, l’énergie et la douceur.", "/assets/icons/practice-type-mantras.png"],
-    ["Mudras", "Des gestes symboliques et guidés pour accompagner ton intention du moment.", "/assets/icons/practice-type-mudras.png"],
-    ["Rituels express", "Des formats courts pour traverser un pic de stress, préparer le sommeil ou relancer l’énergie.", "/assets/icons/practice-type-rituals.png"],
-    ["Voyages guidés", "Des immersions intérieures pour explorer tes ressources et te reconnecter à toi.", "/assets/icons/practice-type-journeys.png"],
-    ["Sons et ambiances", "Des paysages sonores pour respirer, travailler, te poser ou t’endormir.", "/assets/icons/practice-type-music.png"],
+    ["Respirations guidées", "Des respirations guidées pour ralentir et retrouver le calme.", "/assets/icons/practice-type-breaths.png"],
+    ["Mantras et affirmations", "Des mots bienveillants pour cultiver la confiance, retrouver de l’énergie et apaiser l’esprit.", "/assets/icons/practice-type-mantras.png"],
+    ["Mudras", "Des gestes des mains pour te recentrer et retrouver le calme.", "/assets/icons/practice-type-mudras.png"],
+    ["Rituels express", "Des formats courts pour traverser un pic de stress, préparer le sommeil ou retrouver de l’énergie.", "/assets/icons/practice-type-rituals.png"],
+    ["Voyages guidés", "Un mélange de pratiques guidées pour prendre davantage de temps pour toi.", "/assets/icons/practice-type-journeys.png"],
+    ["Sons et ambiances", "Des ambiances sonores pour respirer, te détendre, te concentrer ou t’endormir.", "/assets/icons/practice-type-music.png"],
   ],
   en: [
-    ["Guided breathing", "Simple exercises to slow down, reconnect with your breath, and soothe your nervous system.", "/assets/icons/practice-type-breaths.png"],
-    ["Mantras and affirmations", "Grounding words to nurture confidence, joy, energy, and gentleness.", "/assets/icons/practice-type-mantras.png"],
-    ["Mudras", "Guided symbolic gestures to support the intention you need now.", "/assets/icons/practice-type-mudras.png"],
-    ["Express rituals", "Short formats to move through stress, prepare for sleep, or restore energy.", "/assets/icons/practice-type-rituals.png"],
-    ["Guided journeys", "Inner immersions to explore your resources and reconnect with yourself.", "/assets/icons/practice-type-journeys.png"],
-    ["Sounds and ambiences", "Soundscapes to breathe, focus, settle, or fall asleep.", "/assets/icons/practice-type-music.png"],
+    ["Guided breathing", "Guided breathing to slow down and find calm.", "/assets/icons/practice-type-breaths.png"],
+    ["Mantras and affirmations", "Kind words to build confidence, restore your energy, and calm your mind.", "/assets/icons/practice-type-mantras.png"],
+    ["Mudras", "Hand gestures to help you refocus and find calm.", "/assets/icons/practice-type-mudras.png"],
+    ["Express rituals", "Short guided rituals to get through stressful moments, prepare for sleep, or restore your energy.", "/assets/icons/practice-type-rituals.png"],
+    ["Guided journeys", "A blend of guided practices to take more time for yourself.", "/assets/icons/practice-type-journeys.png"],
+    ["Sounds and ambiences", "Soundscapes to breathe, relax, focus, or fall asleep.", "/assets/icons/practice-type-music.png"],
   ],
 } as const;
 
