@@ -6,6 +6,7 @@ import { withBase } from "../../utils/paths";
 
 const locale = "fr";
 const meta = pageMeta[locale].contact;
+const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
 ---
 
 <BaseLayout locale={locale} title={meta.title} description={meta.description} path={meta.path} alternatePath={meta.alternate}>
@@ -22,7 +23,7 @@ const meta = pageMeta[locale].contact;
 
   <section class="section contact-form-section">
     <div class="container contact-form-layout">
-      <form class="contact-form card" data-contact-form data-contact-email={site.contactEmail}>
+      <form class="contact-form card" data-contact-form data-contact-email={site.contactEmail} data-contact-endpoint={contactEndpoint} data-contact-locale={locale}>
         <div class="field">
           <label for="name">Nom <span aria-hidden="true">*</span></label>
           <input id="name" name="Nom" type="text" autocomplete="name" maxlength="100" required />
@@ -30,7 +31,7 @@ const meta = pageMeta[locale].contact;
 
         <div class="field">
           <label for="email">Email <span aria-hidden="true">*</span></label>
-          <input id="email" name="Email" type="email" autocomplete="email" required />
+          <input id="email" name="Email" type="email" autocomplete="email" maxlength="254" required />
         </div>
 
         <div class="field">
@@ -47,10 +48,16 @@ const meta = pageMeta[locale].contact;
         <div class="field">
           <label for="message">Dis-nous comment on peut t’aider <span aria-hidden="true">*</span></label>
           <p class="field-help">N’hésite pas à nous donner le plus de détails possible pour que nous puissions te répondre au mieux.</p>
-          <textarea id="message" name="Message" rows="6" required></textarea>
+          <textarea id="message" name="Message" rows="6" minlength="20" maxlength="4000" required></textarea>
         </div>
 
-        <button class="button" type="submit">Envoyer</button>
+        <div class="field contact-honeypot" aria-hidden="true">
+          <label for="company">Entreprise</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <p class="form-status" data-contact-status role="status" aria-live="polite" hidden></p>
+        <button class="button" type="submit" data-contact-submit>Envoyer</button>
       </form>
 
       <aside class="contact-aside">
@@ -87,11 +94,32 @@ const meta = pageMeta[locale].contact;
   const form = document.querySelector("[data-contact-form]");
 
   if (form instanceof HTMLFormElement) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
+    const submitButton = form.querySelector("[data-contact-submit]");
+    const status = form.querySelector("[data-contact-status]");
+    const messages = {
+      sending: "Envoi en cours...",
+      success: "Merci, ton message a bien été envoyé. Nous te répondrons dès que possible.",
+      networkFallback: "Le formulaire est temporairement indisponible. Ton client mail va s’ouvrir pour conserver ton message.",
+      validation: "Merci de vérifier les champs du formulaire.",
+      rateLimited: "Trop de messages ont été envoyés récemment. Réessaie dans quelques minutes.",
+    };
 
-      if (!form.reportValidity()) return;
+    const setStatus = (message, kind) => {
+      if (!(status instanceof HTMLElement)) return;
+      status.textContent = message;
+      status.dataset.kind = kind;
+      status.hidden = false;
+    };
 
+    const setSending = (isSending) => {
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = isSending;
+        submitButton.textContent = isSending ? "Envoi..." : "Envoyer";
+      }
+      form.setAttribute("aria-busy", String(isSending));
+    };
+
+    const openMailFallback = () => {
       const contactEmail = form.dataset.contactEmail;
       if (!contactEmail) return;
 
@@ -110,6 +138,69 @@ const meta = pageMeta[locale].contact;
       ].join("\n");
 
       window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
+      const endpoint = form.dataset.contactEndpoint?.trim();
+      if (!endpoint) {
+        setStatus(messages.networkFallback, "warning");
+        openMailFallback();
+        return;
+      }
+
+      const formData = new FormData(form);
+      const name = String(formData.get("Nom") ?? "").trim();
+      const email = String(formData.get("Email") ?? "").trim();
+      const subject = String(formData.get("Objet") ?? "").trim();
+      const message = String(formData.get("Message") ?? "").trim();
+      const honeypot = String(formData.get("company") ?? "").trim();
+
+      setSending(true);
+      setStatus(messages.sending, "info");
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            name,
+            email,
+            subject,
+            message,
+            honeypot,
+            locale: form.dataset.contactLocale ?? "fr",
+            source: "BloomFlyWebsite",
+          }),
+        });
+
+        if (response.ok) {
+          form.reset();
+          setStatus(messages.success, "success");
+          return;
+        }
+
+        if (response.status === 400) {
+          setStatus(messages.validation, "error");
+          return;
+        }
+
+        if (response.status === 429) {
+          setStatus(messages.rateLimited, "error");
+          return;
+        }
+
+        setStatus(messages.networkFallback, "warning");
+        openMailFallback();
+      } catch {
+        setStatus(messages.networkFallback, "warning");
+        openMailFallback();
+      } finally {
+        setSending(false);
+      }
     });
   }
 </script>
@@ -187,6 +278,7 @@ const meta = pageMeta[locale].contact;
   }
 
   .field:nth-child(n + 3),
+  .form-status,
   .contact-form .button {
     grid-column: 1 / -1;
   }
@@ -240,6 +332,39 @@ const meta = pageMeta[locale].contact;
     margin-top: 0.4rem;
     font-weight: 600;
     cursor: pointer;
+  }
+
+  .contact-form .button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+  }
+
+  .contact-honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-status {
+    margin: 0.1rem 0 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(51, 56, 142, 0.12);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--dream);
+    font-weight: 700;
+  }
+
+  .form-status[data-kind="success"] {
+    border-color: rgba(95, 196, 213, 0.45);
+    background: rgba(223, 242, 251, 0.72);
+  }
+
+  .form-status[data-kind="error"] {
+    border-color: rgba(241, 146, 165, 0.55);
+    background: rgba(255, 241, 235, 0.82);
   }
 
   .contact-aside {
