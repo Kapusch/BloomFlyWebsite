@@ -1,0 +1,207 @@
+---
+import { routes, site, type Locale } from "../data/site";
+import { withBase } from "../utils/paths";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = locale === "fr"
+  ? {
+      eyebrow: "Gestion du compte",
+      title: "Supprimer ton compte Bloom & Fly",
+      intro:
+        "Tu peux supprimer définitivement ton compte et les données personnelles qui lui sont associées, depuis l’application ou sans y avoir accès.",
+      inAppTitle: "Depuis l’application",
+      inAppSteps: [
+        "Ouvre Bloom & Fly et connecte-toi à ton compte.",
+        "Ouvre ton profil, puis Paramètres.",
+        "Dans la section Mon compte, sélectionne Supprimer mon compte.",
+        "Lis les informations affichées, puis confirme la suppression.",
+      ],
+      outsideTitle: "Sans accès à l’application",
+      outsideBody:
+        "Envoie-nous une demande depuis l’adresse email associée à ton compte. Indique simplement que tu souhaites supprimer ton compte Bloom & Fly. Nous ne te demanderons jamais ton mot de passe.",
+      requestButton: "Envoyer une demande de suppression",
+      emailAlternative: "Tu peux aussi nous écrire directement à",
+      whatTitle: "Ce qui se passe ensuite",
+      whatItems: [
+        "Ton compte d’authentification et les données personnelles associées à ton utilisation de Bloom & Fly sont supprimés.",
+        "Certaines copies de sauvegarde peuvent être conservées jusqu’à 90 jours avant leur expiration, conformément aux politiques de sauvegarde de nos prestataires.",
+        "Les informations que nous devons conserver pour respecter une obligation légale ou comptable ne sont supprimées qu’à l’issue de la durée applicable.",
+      ],
+      subscriptionTitle: "Attention à ton abonnement",
+      subscriptionBody:
+        "Supprimer ton compte Bloom & Fly n’annule pas un abonnement souscrit auprès d’Apple ou de Google. Pense à l’annuler séparément depuis l’App Store ou Google Play.",
+      privacyPrefix: "Pour en savoir plus sur tes données et tes droits, consulte notre",
+      privacyLabel: "politique de confidentialité",
+      publisher: "Bloom & Fly est une application éditée par Bloomy Apps.",
+    }
+  : {
+      eyebrow: "Account management",
+      title: "Delete your Bloom & Fly account",
+      intro:
+        "You can permanently delete your account and its associated personal data, either from the app or without access to it.",
+      inAppTitle: "From the app",
+      inAppSteps: [
+        "Open Bloom & Fly and sign in to your account.",
+        "Open your profile, then Settings.",
+        "In the My account section, select Delete my account.",
+        "Read the information displayed, then confirm deletion.",
+      ],
+      outsideTitle: "Without access to the app",
+      outsideBody:
+        "Send us a request from the email address associated with your account. Simply state that you want to delete your Bloom & Fly account. We will never ask for your password.",
+      requestButton: "Submit a deletion request",
+      emailAlternative: "You can also email us directly at",
+      whatTitle: "What happens next",
+      whatItems: [
+        "Your authentication account and the personal data associated with your use of Bloom & Fly are deleted.",
+        "Some backup copies may be retained for up to 90 days before they expire, in accordance with our service providers’ backup policies.",
+        "Information that we must retain to comply with a legal or accounting obligation is deleted only after the applicable retention period.",
+      ],
+      subscriptionTitle: "A note about subscriptions",
+      subscriptionBody:
+        "Deleting your Bloom & Fly account does not cancel a subscription purchased through Apple or Google. Remember to cancel it separately in the App Store or Google Play.",
+      privacyPrefix: "For more information about your data and rights, read our",
+      privacyLabel: "privacy policy",
+      publisher: "Bloom & Fly is published by Bloomy Apps.",
+    };
+
+const privacyHref = withBase(routes[locale].privacyPolicy);
+const requestHref = `${withBase(routes[locale].contact)}?subject=account-deletion`;
+---
+
+<section class="section deletion-hero">
+  <div class="narrow">
+    <p class="eyebrow">{content.eyebrow}</p>
+    <h1>{content.title}</h1>
+    <p class="lead">{content.intro}</p>
+  </div>
+</section>
+
+<section class="section deletion-details">
+  <div class="narrow deletion-stack">
+    <article class="card deletion-card">
+      <h2>{content.inAppTitle}</h2>
+      <ol>
+        {content.inAppSteps.map((step) => <li>{step}</li>)}
+      </ol>
+    </article>
+
+    <article class="card deletion-card deletion-card--accent">
+      <h2>{content.outsideTitle}</h2>
+      <p>{content.outsideBody}</p>
+      <a class="button" href={requestHref}>{content.requestButton}</a>
+      <p class="email-address">
+        {content.emailAlternative}{" "}<a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
+      </p>
+    </article>
+
+    <article class="deletion-copy">
+      <h2>{content.whatTitle}</h2>
+      <ul>
+        {content.whatItems.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <aside class="subscription-note" aria-labelledby="subscription-title">
+      <h2 id="subscription-title">{content.subscriptionTitle}</h2>
+      <p>{content.subscriptionBody}</p>
+    </aside>
+
+    <div class="deletion-footer-copy">
+      <p>{content.privacyPrefix} <a href={privacyHref}>{content.privacyLabel}</a>.</p>
+      <p>{content.publisher}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .deletion-hero {
+    background: linear-gradient(120deg, rgba(255, 241, 235, 0.95), rgba(223, 242, 251, 0.65));
+  }
+
+  .deletion-hero h1 {
+    max-width: 14ch;
+    font-size: clamp(3rem, 7vw, 6rem);
+  }
+
+  .deletion-details {
+    padding-top: clamp(3rem, 7vw, 5rem);
+  }
+
+  .deletion-stack {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .deletion-card,
+  .deletion-copy,
+  .subscription-note {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .deletion-card h2,
+  .deletion-copy h2,
+  .subscription-note h2 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+  }
+
+  .deletion-card ol,
+  .deletion-copy ul {
+    margin: 0;
+    padding-left: 1.4rem;
+  }
+
+  .deletion-card li + li,
+  .deletion-copy li + li {
+    margin-top: 0.65rem;
+  }
+
+  .deletion-card--accent {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(223, 242, 251, 0.65));
+  }
+
+  .deletion-card--accent .button {
+    margin-top: 0.5rem;
+  }
+
+  .email-address {
+    margin: 1rem 0 0;
+    font-size: 0.96rem;
+  }
+
+  .email-address a,
+  .deletion-footer-copy a {
+    color: var(--dream);
+    font-weight: 700;
+  }
+
+  .subscription-note {
+    border-left: 4px solid var(--aqua);
+    border-radius: 8px;
+    background: rgba(223, 242, 251, 0.5);
+  }
+
+  .subscription-note p,
+  .deletion-footer-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .deletion-footer-copy {
+    padding-inline: clamp(0rem, 2vw, 1rem);
+  }
+
+  @media (max-width: 560px) {
+    .deletion-card--accent .button {
+      width: 100%;
+      text-align: center;
+    }
+
+    .email-address {
+      overflow-wrap: anywhere;
+    }
+  }
+</style>

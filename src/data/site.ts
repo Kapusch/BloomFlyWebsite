@@ -27,6 +27,7 @@ export const routes = {
     discover: "/discover-bloom-and-fly/",
     about: "/about/",
     contact: "/contact/",
+    accountDeletion: "/account-deletion/",
     legalNotices: "/legal-notices/",
     privacyPolicy: "/privacy-policy/",
     termsOfService: "/terms-of-service/",
@@ -37,6 +38,7 @@ export const routes = {
     discover: "/en/discover-bloom-and-fly/",
     about: "/en/about/",
     contact: "/en/contact/",
+    accountDeletion: "/en/account-deletion/",
     legalNotices: "/en/legal-notices/",
     privacyPolicy: "/en/privacy-policy/",
     termsOfService: "/en/terms-of-service/",
@@ -186,6 +188,12 @@ export const pageMeta = {
       path: routes.fr.contact,
       alternate: routes.en.contact,
     },
+    accountDeletion: {
+      title: "Supprimer un compte Bloom & Fly",
+      description: "Découvre comment supprimer définitivement ton compte Bloom & Fly et les données qui lui sont associées.",
+      path: routes.fr.accountDeletion,
+      alternate: routes.en.accountDeletion,
+    },
   },
   en: {
     home: {
@@ -213,6 +221,12 @@ export const pageMeta = {
       description: "Contact the Bloom & Fly team for support, partnerships, press, or general questions.",
       path: routes.en.contact,
       alternate: routes.fr.contact,
+    },
+    accountDeletion: {
+      title: "Delete a Bloom & Fly Account",
+      description: "Learn how to permanently delete your Bloom & Fly account and its associated data.",
+      path: routes.en.accountDeletion,
+      alternate: routes.fr.accountDeletion,
     },
   },
 } as const;

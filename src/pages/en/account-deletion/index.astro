@@ -1,0 +1,12 @@
+---
+import AccountDeletionContent from "../../../components/AccountDeletionContent.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { pageMeta } from "../../../data/site";
+
+const locale = "en";
+const meta = pageMeta[locale].accountDeletion;
+---
+
+<BaseLayout locale={locale} title={meta.title} description={meta.description} path={meta.path} alternatePath={meta.alternate}>
+  <AccountDeletionContent locale={locale} />
+</BaseLayout>

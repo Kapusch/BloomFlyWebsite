@@ -3,10 +3,31 @@ import LegalContent from "../../../components/LegalContent.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { legalPages } from "../../../data/legal";
 import { routes } from "../../../data/site";
+import { withBase } from "../../../utils/paths";
 ---
 
 <BaseLayout locale="en" title="Privacy Policy - Bloom & Fly" description="Bloom & Fly privacy policy and personal data processing information." path={routes.en.privacyPolicy} alternatePath={routes.fr.privacyPolicy}>
   <section class="section">
     <LegalContent html={legalPages.en.privacyPolicy} />
+    <p class="account-deletion-link">
+      To delete your Bloom & Fly account and its associated data, read the{" "}
+      <a href={withBase(routes.en.accountDeletion)}>account deletion procedure</a>.
+    </p>
   </section>
 </BaseLayout>
+
+<style>
+  .account-deletion-link {
+    width: min(820px, 100%);
+    margin: 2rem auto 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid var(--aqua);
+    border-radius: 8px;
+    background: rgba(223, 242, 251, 0.5);
+  }
+
+  .account-deletion-link a {
+    color: var(--dream);
+    font-weight: 700;
+  }
+</style>
