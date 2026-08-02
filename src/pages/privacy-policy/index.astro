@@ -3,10 +3,31 @@ import LegalContent from "../../components/LegalContent.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { legalPages } from "../../data/legal";
 import { routes } from "../../data/site";
+import { withBase } from "../../utils/paths";
 ---
 
 <BaseLayout locale="fr" title="Politique de confidentialité - Bloom & Fly" description="Politique de confidentialité de Bloom & Fly et informations sur le traitement des données personnelles." path={routes.fr.privacyPolicy} alternatePath={routes.en.privacyPolicy}>
   <section class="section">
     <LegalContent html={legalPages.fr.privacyPolicy} />
+    <p class="account-deletion-link">
+      Pour supprimer ton compte Bloom & Fly et les données qui lui sont associées, consulte la{" "}
+      <a href={withBase(routes.fr.accountDeletion)}>procédure de suppression du compte</a>.
+    </p>
   </section>
 </BaseLayout>
+
+<style>
+  .account-deletion-link {
+    width: min(820px, 100%);
+    margin: 2rem auto 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid var(--aqua);
+    border-radius: 8px;
+    background: rgba(223, 242, 251, 0.5);
+  }
+
+  .account-deletion-link a {
+    color: var(--dream);
+    font-weight: 700;
+  }
+</style>

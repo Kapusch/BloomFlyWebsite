@@ -39,6 +39,7 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
           <select id="subject" name="Subject" required>
             <option value="">Select an option</option>
             <option value="Support">Support</option>
+            <option value="Account deletion">Account deletion</option>
             <option value="Press">Press</option>
             <option value="Partnerships">Partnerships</option>
             <option value="Other">Other</option>
@@ -103,6 +104,19 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
       validation: "Please check the form fields.",
       rateLimited: "Too many messages were sent recently. Please try again in a few minutes.",
     };
+
+    if (new URLSearchParams(window.location.search).get("subject") === "account-deletion") {
+      const subject = form.elements.namedItem("Subject");
+      const message = form.elements.namedItem("Message");
+
+      if (subject instanceof HTMLSelectElement) {
+        subject.value = "Account deletion";
+      }
+
+      if (message instanceof HTMLTextAreaElement && !message.value) {
+        message.value = "I would like to permanently delete the Bloom & Fly account associated with the email address entered above.";
+      }
+    }
 
     const setStatus = (message, kind) => {
       if (!(status instanceof HTMLElement)) return;

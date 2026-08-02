@@ -39,6 +39,7 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
           <select id="subject" name="Objet" required>
             <option value="">Sélectionner une option</option>
             <option value="Support">Support</option>
+            <option value="Account deletion">Suppression de compte</option>
             <option value="Presse">Presse</option>
             <option value="Partenariats">Partenariats</option>
             <option value="Autre">Autre</option>
@@ -103,6 +104,19 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
       validation: "Merci de vérifier les champs du formulaire.",
       rateLimited: "Trop de messages ont été envoyés récemment. Réessaie dans quelques minutes.",
     };
+
+    if (new URLSearchParams(window.location.search).get("subject") === "account-deletion") {
+      const subject = form.elements.namedItem("Objet");
+      const message = form.elements.namedItem("Message");
+
+      if (subject instanceof HTMLSelectElement) {
+        subject.value = "Account deletion";
+      }
+
+      if (message instanceof HTMLTextAreaElement && !message.value) {
+        message.value = "Je souhaite supprimer définitivement mon compte Bloom & Fly associé à l’adresse email indiquée ci-dessus.";
+      }
+    }
 
     const setStatus = (message, kind) => {
       if (!(status instanceof HTMLElement)) return;

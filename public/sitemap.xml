@@ -43,6 +43,16 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/contact/" />
   </url>
+  <url>
+    <loc>https://bloomandflyapp.com/account-deletion/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/account-deletion/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/account-deletion/" />
+  </url>
+  <url>
+    <loc>https://bloomandflyapp.com/en/account-deletion/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bloomandflyapp.com/account-deletion/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bloomandflyapp.com/en/account-deletion/" />
+  </url>
   <url><loc>https://bloomandflyapp.com/legal-notices/</loc></url>
   <url><loc>https://bloomandflyapp.com/privacy-policy/</loc></url>
   <url><loc>https://bloomandflyapp.com/terms-of-service/</loc></url>
