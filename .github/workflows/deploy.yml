@@ -34,6 +34,7 @@ jobs:
         run: npm run build
         env:
           PUBLIC_CONTACT_FORM_ENDPOINT: ${{ vars.PUBLIC_CONTACT_FORM_ENDPOINT }}
+          PUBLIC_RECAPTCHA_ENTERPRISE_SITE_KEY: ${{ vars.PUBLIC_RECAPTCHA_ENTERPRISE_SITE_KEY }}
 
       - name: Upload artifact
         if: github.event.repository.private == false

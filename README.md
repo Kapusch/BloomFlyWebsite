@@ -31,6 +31,21 @@ The workflow in `.github/workflows/deploy.yml` builds `dist/` on pushes to `main
 
 Custom domain setup for `bloomandflyapp.com` is not switched here. DNS and GitHub Pages custom-domain activation must be approved separately.
 
+## Contact form configuration
+
+The static contact form uses two public build variables:
+
+```dotenv
+PUBLIC_CONTACT_FORM_ENDPOINT=
+PUBLIC_RECAPTCHA_ENTERPRISE_SITE_KEY=
+```
+
+Set both as GitHub Actions repository variables for the GitHub Pages build. The
+site key is public and must match the reCAPTCHA Enterprise key configured by the
+Firebase backend; never add service-account credentials or API secrets here. If
+either value is missing, or reCAPTCHA cannot run, the form falls back to the
+existing `mailto` flow.
+
 ## Product Constraints
 
 - No backend
