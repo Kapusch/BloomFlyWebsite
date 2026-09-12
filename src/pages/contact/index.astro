@@ -7,6 +7,7 @@ import { withBase } from "../../utils/paths";
 const locale = "fr";
 const meta = pageMeta[locale].contact;
 const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
+const recaptchaSiteKey = import.meta.env.PUBLIC_RECAPTCHA_ENTERPRISE_SITE_KEY?.trim() ?? "";
 ---
 
 <BaseLayout locale={locale} title={meta.title} description={meta.description} path={meta.path} alternatePath={meta.alternate}>
@@ -23,7 +24,7 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
 
   <section class="section contact-form-section">
     <div class="container contact-form-layout">
-      <form class="contact-form card" data-contact-form data-contact-email={site.contactEmail} data-contact-endpoint={contactEndpoint} data-contact-locale={locale}>
+      <form class="contact-form card" data-contact-form data-contact-email={site.contactEmail} data-contact-endpoint={contactEndpoint} data-contact-locale={locale} data-recaptcha-site-key={recaptchaSiteKey}>
         <div class="field">
           <label for="name">Nom <span aria-hidden="true">*</span></label>
           <input id="name" name="Nom" type="text" autocomplete="name" maxlength="100" required />
@@ -92,131 +93,9 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
 </BaseLayout>
 
 <script>
-  const form = document.querySelector("[data-contact-form]");
+  import { initializeContactForm } from "../../scripts/contact-form";
 
-  if (form instanceof HTMLFormElement) {
-    const submitButton = form.querySelector("[data-contact-submit]");
-    const status = form.querySelector("[data-contact-status]");
-    const messages = {
-      sending: "Envoi en cours...",
-      success: "Merci, ton message a bien été envoyé. Nous te répondrons dès que possible.",
-      networkFallback: "Le formulaire est temporairement indisponible. Ton client mail va s’ouvrir pour conserver ton message.",
-      validation: "Merci de vérifier les champs du formulaire.",
-      rateLimited: "Trop de messages ont été envoyés récemment. Réessaie dans quelques minutes.",
-    };
-
-    if (new URLSearchParams(window.location.search).get("subject") === "account-deletion") {
-      const subject = form.elements.namedItem("Objet");
-      const message = form.elements.namedItem("Message");
-
-      if (subject instanceof HTMLSelectElement) {
-        subject.value = "Account deletion";
-      }
-
-      if (message instanceof HTMLTextAreaElement && !message.value) {
-        message.value = "Je souhaite supprimer définitivement mon compte Bloom & Fly associé à l’adresse email indiquée ci-dessus.";
-      }
-    }
-
-    const setStatus = (message, kind) => {
-      if (!(status instanceof HTMLElement)) return;
-      status.textContent = message;
-      status.dataset.kind = kind;
-      status.hidden = false;
-    };
-
-    const setSending = (isSending) => {
-      if (submitButton instanceof HTMLButtonElement) {
-        submitButton.disabled = isSending;
-        submitButton.textContent = isSending ? "Envoi..." : "Envoyer";
-      }
-      form.setAttribute("aria-busy", String(isSending));
-    };
-
-    const openMailFallback = () => {
-      const contactEmail = form.dataset.contactEmail;
-      if (!contactEmail) return;
-
-      const formData = new FormData(form);
-      const name = String(formData.get("Nom") ?? "").trim();
-      const email = String(formData.get("Email") ?? "").trim();
-      const subject = String(formData.get("Objet") ?? "").trim();
-      const message = String(formData.get("Message") ?? "").trim();
-      const mailSubject = `[Bloom & Fly] ${subject || "Contact"}`;
-      const mailBody = [
-        `Nom : ${name}`,
-        `Email : ${email}`,
-        `Objet : ${subject}`,
-        "",
-        message,
-      ].join("\n");
-
-      window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
-    };
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      if (!form.reportValidity()) return;
-
-      const endpoint = form.dataset.contactEndpoint?.trim();
-      if (!endpoint) {
-        setStatus(messages.networkFallback, "warning");
-        openMailFallback();
-        return;
-      }
-
-      const formData = new FormData(form);
-      const name = String(formData.get("Nom") ?? "").trim();
-      const email = String(formData.get("Email") ?? "").trim();
-      const subject = String(formData.get("Objet") ?? "").trim();
-      const message = String(formData.get("Message") ?? "").trim();
-      const honeypot = String(formData.get("company") ?? "").trim();
-
-      setSending(true);
-      setStatus(messages.sending, "info");
-
-      try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({
-            name,
-            email,
-            subject,
-            message,
-            honeypot,
-            locale: form.dataset.contactLocale ?? "fr",
-            source: "BloomFlyWebsite",
-          }),
-        });
-
-        if (response.ok) {
-          form.reset();
-          setStatus(messages.success, "success");
-          return;
-        }
-
-        if (response.status === 400) {
-          setStatus(messages.validation, "error");
-          return;
-        }
-
-        if (response.status === 429) {
-          setStatus(messages.rateLimited, "error");
-          return;
-        }
-
-        setStatus(messages.networkFallback, "warning");
-        openMailFallback();
-      } catch {
-        setStatus(messages.networkFallback, "warning");
-        openMailFallback();
-      } finally {
-        setSending(false);
-      }
-    });
-  }
+  initializeContactForm();
 </script>
 
 <style>
