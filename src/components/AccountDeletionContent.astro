@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+// TODO(D4, 2026-10-28): the PostHog/RevenueCat deletion item below is true only once the app's
+// Firebase/functions/src/auth/delete-user-data.ts performs those deletions in PROD.
 const content = locale === "fr"
   ? {
       eyebrow: "Gestion du compte",
@@ -28,12 +30,13 @@ const content = locale === "fr"
       whatTitle: "Ce qui se passe ensuite",
       whatItems: [
         "Ton compte d’authentification et les données personnelles associées à ton utilisation de Bloom & Fly sont supprimés.",
+        "Ton profil de mesure d’audience chez PostHog, avec ses événements, et ta fiche client chez RevenueCat sont aussi supprimés. Chez PostHog, la suppression des événements peut prendre quelques jours.",
         "Certaines copies de sauvegarde peuvent être conservées jusqu’à 90 jours avant leur expiration, conformément aux politiques de sauvegarde de nos prestataires.",
         "Les informations que nous devons conserver pour respecter une obligation légale ou comptable ne sont supprimées qu’à l’issue de la durée applicable.",
       ],
       subscriptionTitle: "Attention à ton abonnement",
       subscriptionBody:
-        "Supprimer ton compte Bloom & Fly n’annule pas un abonnement souscrit auprès d’Apple ou de Google. Pense à l’annuler séparément depuis l’App Store ou Google Play.",
+        "Supprimer ton compte Bloom & Fly n’annule pas un abonnement souscrit auprès d’Apple ou de Google. Pense à l’annuler séparément : sur iPhone ou iPad, dans Réglages > ton nom > Abonnements ; sur Android, dans l’app Google Play > ton profil > Paiements et abonnements > Abonnements. Apple et Google, qui te vendent l’abonnement, conservent les achats et factures correspondants.",
       privacyPrefix: "Pour en savoir plus sur tes données et tes droits, consulte notre",
       privacyLabel: "politique de confidentialité",
       publisher: "Bloom & Fly est une application éditée par Bloomy Apps.",
@@ -58,12 +61,13 @@ const content = locale === "fr"
       whatTitle: "What happens next",
       whatItems: [
         "Your authentication account and the personal data associated with your use of Bloom & Fly are deleted.",
+        "Your analytics profile in PostHog, with its events, and your customer record in RevenueCat are also deleted. In PostHog, event deletion may take a few days.",
         "Some backup copies may be retained for up to 90 days before they expire, in accordance with our service providers’ backup policies.",
         "Information that we must retain to comply with a legal or accounting obligation is deleted only after the applicable retention period.",
       ],
       subscriptionTitle: "A note about subscriptions",
       subscriptionBody:
-        "Deleting your Bloom & Fly account does not cancel a subscription purchased through Apple or Google. Remember to cancel it separately in the App Store or Google Play.",
+        "Deleting your Bloom & Fly account does not cancel a subscription purchased through Apple or Google. Remember to cancel it separately: on iPhone or iPad, in Settings > your name > Subscriptions; on Android, in the Google Play app > your profile > Payments & subscriptions > Subscriptions. Apple and Google, which sell you the subscription, keep the related purchase and invoice records.",
       privacyPrefix: "For more information about your data and rights, read our",
       privacyLabel: "privacy policy",
       publisher: "Bloom & Fly is published by Bloomy Apps.",
